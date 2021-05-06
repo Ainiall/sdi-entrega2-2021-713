@@ -4927,3 +4927,162 @@
 [2021-05-06T20:32:46.745] [INFO] default - Acceso al formulario de inicio de sesión
 [2021-05-06T20:32:50.488] [INFO] default - Usuario identificado:test@test.com
 [2021-05-06T20:32:54.395] [INFO] default - Acceso a la creación de ofertas
+[2021-05-06T22:17:10.454] [INFO] default - Servidor activo
+[2021-05-06T22:17:14.294] [INFO] default - Accediendo al router de sesión pública
+[2021-05-06T22:17:14.295] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-06T22:34:42.421] [INFO] default - Servidor activo
+[2021-05-06T22:34:45.091] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:34:57.328] [INFO] default - Servidor activo
+[2021-05-06T22:34:59.799] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:38:03.943] [INFO] default - Servidor activo
+[2021-05-06T22:38:09.217] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:38:11.309] [INFO] default - Accediendo al router de sesión pública
+[2021-05-06T22:38:11.310] [INFO] default - Acceso al formulario de registro
+[2021-05-06T22:38:11.312] [ERROR] default - APP ERROR: Error: ENOENT: no such file or directory, open 'C:\Users\Aini\WebstormProjects\sdi-entrega2-2021-713\views\bregistro.html'
+[2021-05-06T22:41:19.796] [INFO] default - Servidor activo
+[2021-05-06T22:41:22.872] [INFO] default - Accediendo al router de sesión pública
+[2021-05-06T22:41:22.873] [INFO] default - Acceso al formulario de registro
+[2021-05-06T22:41:24.359] [INFO] default - Accediendo al router de sesión pública
+[2021-05-06T22:41:24.360] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-06T22:41:41.100] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:41.114] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:41.638] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-06T22:41:41.690] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:41.694] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:41.766] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:41.774] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:41.830] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:41.834] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:41.898] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:41.908] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:41.974] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:41.977] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.047] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.050] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.111] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.115] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.179] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.185] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.243] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.247] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.310] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.314] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.379] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.386] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.477] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.484] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.547] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.551] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.610] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.613] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.681] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.696] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.760] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.764] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.826] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.830] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.893] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.896] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:42.960] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:42.964] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.026] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.031] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.086] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.093] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.147] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.150] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.211] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.217] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.291] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.295] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.347] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.351] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.403] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.407] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.467] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.478] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.541] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.544] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.598] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.601] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.669] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.678] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.736] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.744] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.795] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.800] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.860] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.864] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:41:43.935] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:41:43.945] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:28.925] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:28.930] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:29.365] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-06T22:42:29.396] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:29.400] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:29.476] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:29.480] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:29.546] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:29.549] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:29.617] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:29.623] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:29.694] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:29.697] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:29.767] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:29.776] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:29.833] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:29.840] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:29.896] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:29.900] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:29.961] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:29.965] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.031] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.035] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.112] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.117] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.188] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.197] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.267] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.271] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.334] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.338] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.396] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.400] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.455] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.462] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.521] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.532] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.596] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.600] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.661] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.664] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.717] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.720] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.777] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.781] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.848] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.852] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.918] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.922] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:30.970] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:30.978] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:31.043] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:31.046] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:31.095] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:31.098] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:31.152] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:31.156] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:31.217] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:31.220] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:31.279] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:31.285] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:31.345] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:31.348] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:31.401] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:31.404] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:31.460] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:31.464] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:31.516] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:31.519] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-06T22:42:31.593] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-06T22:42:31.597] [INFO] default - Acceso a la vista principal de la aplicación

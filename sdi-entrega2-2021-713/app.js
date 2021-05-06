@@ -1,6 +1,6 @@
 //Modules
 const {logger} = require('./modules/logger');
-let utils = require('../utils/utils');
+let utils = require('./utils/utils');
 let express = require('express');
 let app = express();
 

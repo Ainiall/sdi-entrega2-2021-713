@@ -45,7 +45,7 @@ module.exports = function (app, swig, gestorBD) {
                         paginas.push(i);
                     }
                 }
-                let respuesta = swig.renderFile('views/bofertas.html',
+                let respuesta = swig.renderFile('sdi-entrega2-2021-713/views/bofertas.html',
                     {
                         usuario: req.session.usuario,
                         dinero: req.session.dinero,
@@ -65,7 +65,7 @@ module.exports = function (app, swig, gestorBD) {
      */
     app.get('/ofertas/agregar', function (req, res) {
         logger.info('Acceso a la creación de ofertas');
-        let respuesta = swig.renderFile('views/bagregar.html',
+        let respuesta = swig.renderFile('sdi-entrega2-2021-713/views/bagregar.html',
             {
                 usuario: req.session.usuario,
                 dinero: req.session.dinero,
@@ -120,7 +120,7 @@ module.exports = function (app, swig, gestorBD) {
                 utils.manejoErrores('Error al listar ofertas propias',
                     'Error al listar ofertas propias', next);
             } else {
-                let respuesta = swig.renderFile('views/bofertasPropias.html',
+                let respuesta = swig.renderFile('sdi-entrega2-2021-713/views/bofertasPropias.html',
                     {
                         ofertas: utils.filtrarOfertasPropias(ofertas),
                         usuario: req.session.usuario,
@@ -292,7 +292,7 @@ module.exports = function (app, swig, gestorBD) {
                 let criterio = {'_id': {$in: ofertasCompradasIds}}
                 gestorBD.obtenerOfertas(criterio, function (ofertas) {
                     logger.info('Compras obtenidas de usuario: ' + req.session.usuario);
-                    let respuesta = swig.renderFile('views/bcompras.html',
+                    let respuesta = swig.renderFile('sdi-entrega2-2021-713/views/bcompras.html',
                         {
                             compras: utils.filtrarCompras(ofertas),
                             usuario: req.session.usuario,

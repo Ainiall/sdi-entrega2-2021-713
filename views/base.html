@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{% block titulo %} uoMusic {% endblock %}</title>
+    <title>{% block titulo %} Wallapop {% endblock %}</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -10,8 +10,6 @@
     {% block scripts %}  {% endblock %}
 </head>
 <body>
-
-
 <!-- Barra de Navegación superior -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -24,20 +22,40 @@
             <img src="/img/logo.png" alt="logo"/>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
+            {% if rol == 'USUARIO' %}
             <ul class="nav navbar-nav">
-                <li id="mTienda" class="active"><a href="/tienda">Tienda</a></li>
-                <li id="mFavs"><a href="/favoritos">Favoritos</a></li>
-                <li id="mPublicaciones"><a href="/publicaciones">Publicaciones</a></li>
-                <li id="mCompras"><a href="/compras">Compras</a></li>
+                <!-- USUARIO ESTANDAR -->
+                <li id="mOfertas" class="active"><a href="/ofertas">Ofertas</a></li>
+                <li id="mCompras"><a href="/ofertas/mis-compras">Mis Compras</a></li>
+
+                <li id="mMisOfertas" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span>Mis ofertas</span> <span class="caret"></span>
+                </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/ofertas/agregar">Agregar oferta</a></li>
+                        <li><a href="/ofertas/mis-ofertas">Ver mis ofertas</a></li>
+                    </ul>
+                </li>
             </ul>
+            {% endif %}
+
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/registrarse"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
-                <li><a href="/identificarse"><span class="glyphicon glyphicon-log-in"></span> Identifícate</a></li>
+                {% if usuario == null %}
+                    <li><a href="/registrarse"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
+                    <li><a href="/identificarse"><span class="glyphicon glyphicon-log-in"></span> Identifícate</a></li>
+                {% endif %}
+                {% if usuario != null %}
+                    <li><a href="#"> {{ usuario }}</a></li>
+                    {% if rol != 'ADMIN' %}
+                        <li><a href="#"> {{ dinero }} €</a></li>
+                    {% endif %}
+                    <li><a href="/desconectarse"><span class="glyphicon glyphicon-log-out"></span> Cierra sesión</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>
 </nav>
-
 
 <div class="container">
     <script>
@@ -68,7 +86,5 @@
     <!--Posible contenido por defecto-->
     {% endblock %}
 </div>
-
-
 </body>
 </html>

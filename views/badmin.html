@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block titulo %} Wallapop - Administración {% endblock %}
+{% block contenido_principal %}
+
+<h2>Administración</h2>
+<div class="row">
+    <!--Inicio del Bloque oferta-->
+    <form class="form-horizontal" method="post" action="/admin/eliminar" >
+        <div class="table-responsive">
+            <table class="table table-hover" id="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellidos</th>
+                        <th class="col-md-1">
+                            <button id="btnDelete" type="submit" class="btn btn-default"
+                                     disabled>
+                                <span class="glyphicon glyphicon-trash"></span> Eliminar
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in usuarios %}
+                    <tr>
+                        <td style="text-align:center">{{ user.email }}</td>
+                        <td style="text-align:center">{{ user.nombre }}</td>
+                        <td style="text-align:center">{{ user.apellidos }}</td>
+                        <td style="text-align:center">
+                            <input type="checkbox" id="userEmail"
+                                   name="userEmail" value="{{ user.email.toString() }}"/></td>
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+
+    <script>
+        <!--Script para bloquear el boton en caso de no tener selección -->
+        $("input[name='userEmail']").on('change',
+            function() {
+                $("#btnDelete").prop('disabled',
+                    !$("input[name='userEmail']:checked").length);
+            })
+    </script>
+    <!--Fin del Bloque ofertas-->
+</div>
+{% endblock %}

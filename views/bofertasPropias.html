@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block titulo %} Mis ofertas {% endblock %}
+
+{% block contenido_principal %}
+<h2>Mis ofertas</h2>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class="text-center">Título</th>
+            <th class="text-center">Descripción</th>
+            <th class="text-center">Precio</th>
+            <th class="col-md-1"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for oferta in ofertas %}
+        <tr>
+            <td style="text-align:center">{{ oferta.titulo }}</td>
+            <td style="text-align:center">{{ oferta.descripcion }}</td>
+            <td style="text-align:center">{{ oferta.precio }}</td>
+
+            <td>
+                {% if oferta.vendida %}
+                <button type="button" class="btn btn-secondary" disabled>
+                    <span class="glyphicon glyphicon-trash"></span> Eliminar
+                </button>
+                {% endif %}
+                {% if !oferta.vendida %}
+                <a href="/ofertas/eliminar/{{ oferta._id.toString() }}">
+                    <span class="glyphicon glyphicon-trash"></span> Eliminar
+                </a> <br>
+                {% endif %}
+
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

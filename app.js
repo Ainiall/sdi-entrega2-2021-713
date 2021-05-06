@@ -1,9 +1,11 @@
 //Modules
+const {logger} = require('./modules/logger');
+let utils = require('../utils/utils');
 let express = require('express');
 let app = express();
 
 let rest = require('request');
-app.set('rest',rest);
+app.set('rest', rest);
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -28,9 +30,6 @@ app.use(expressSession({
 }));
 
 let crypto = require('crypto');
-let fileUpload = require('express-fileupload');
-app.use(fileUpload());
-
 let mongo = require('mongodb');
 let swig = require('swig'); // plantilla
 
@@ -67,115 +66,125 @@ routerUsuarioToken.use(function (req, res, next) {
 // Aplicar router Usuario Token
 app.use('/api/cancion', routerUsuarioToken);
 
-// router Usuario Session
-let routerUsuarioSession = express.Router();
-routerUsuarioSession.use(function (req, res, next) {
-    console.log('routerUsuarioSession');
-    if (req.session.usuario) {
-        // dejamos correr la petición
+/**
+ * Router que se encarga de manejar las vistas privadas del usuario
+ * @type {Router}
+ */
+let routerSesionPrivadaUser = express.Router();
+routerSesionPrivadaUser.use(function (req, res, next) {
+    logger.info('Accediendo al router de sesión privada de usuario')
+    utils.areaPrivada('USUARIO', req,res, next);
+});
+
+//Aplicar router Sesion Privada Usuario
+app.use('/ofertas*', routerSesionPrivadaUser);
+app.use('/ofertas/*', routerSesionPrivadaUser);
+
+/**
+ * Router que se encarga de manejar las vistas privadas del administrador
+ * @type {Router}
+ */
+let routerSesionPrivadaAdmin = express.Router();
+routerSesionPrivadaAdmin.use(function (req, res, next) {
+    logger.info('Accediendo al router de sesión privada de administrador')
+    utils.areaPrivada('ADMIN', req, res, next);
+});
+// Aplicar router Sesion Privada Admin
+app.use('/admin', routerSesionPrivadaAdmin);
+app.use('/admin/*', routerSesionPrivadaAdmin);
+
+/**
+ * Router encargado de manejar el acceso a zonas exclusivamente públicas
+ * @type {Router}
+ */
+let routerSesionPublica = express.Router();
+routerSesionPublica.use(function (req, res, next) {
+    logger.info('Accediendo al router de sesión pública')
+    if (!req.session.usuario) {
         next();
-        return;
     } else {
-        console.log('va a : ' + req.session.destino);
-        res.redirect('/identificarse');
+        logger.info('Usuario identificado va a : ' + req.originalUrl);
+        res.redirect('/home');
     }
 });
-//Aplicar router Usuario Session
-app.use('/canciones/agregar', routerUsuarioSession);
-app.use('/publicaciones', routerUsuarioSession);
-app.use('/favoritos', routerUsuarioSession);
-app.use('/cancion/comprar', routerUsuarioSession);
-app.use('/compras', routerUsuarioSession);
 
-//router Usuario Autor
-let routerUsuarioAutor = express.Router();
-routerUsuarioAutor.use(function (req, res, next) {
-    console.log('routerUsuarioAutor');
-    let path = require('path');
-    let id = path.basename(req.originalUrl);
-    // Cuidado porque req.params no funciona en el router si los params van en la URL.
-    gestorBD.obtenerCanciones({_id: mongo.ObjectID(id)}, function (canciones) {
-        console.log(canciones[0]);
-        if (canciones[0].autor === req.session.usuario) {
-            next();
-            return;
-        } else {
-            res.redirect('/tienda');
-        }
-    })
-});
-//Aplicar router Usuario Autor
-app.use('/cancion/modificar', routerUsuarioAutor);
-app.use('/cancion/eliminar', routerUsuarioAutor);
-
-
-//router Audios
-let routerAudios = express.Router();
-routerAudios.use(function (req, res, next) {
-    console.log('routerAudios');
-    let path = require('path');
-    let idCancion = path.basename(req.originalUrl, '.mp3');
-    gestorBD.obtenerCanciones({'_id': mongo.ObjectID(idCancion)}, function (canciones) {
-        if (req.session.usuario && canciones[0].autor === req.session.usuario) {
-            next();
-            return;
-        } else {
-            let criterio = {
-                usuario: req.session.usuario,
-                cancionId: mongo.ObjectID(idCancion)
-            };
-            gestorBD.obtenerCompras(criterio, function (compras) {
-                if (compras != null && compras.length > 0) {
-                    next();
-                    return;
-                } else {
-                    res.redirect('/tienda');
-                }
-            });
-        }
-    })
-});
-//Aplicar router Audios
-app.use('/audios/', routerAudios);
+//Aplicar router Sesión Pública
+app.use('/registrarse', routerSesionPublica);
+app.use('/identificarse', routerSesionPublica);
 
 app.use(express.static('public'));
 
 //Variables
 app.set('port', 8081);
-app.set('db', 'mongodb://admin:sdi@tiendamusica-shard-00-00.0qjil.mongodb.net:27017,' +
-    'tiendamusica-shard-00-01.0qjil.mongodb.net:27017,' +
-    'tiendamusica-shard-00-02.0qjil.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-4bmyod-shard-0&authSource=admin&retryWrites=true&w=majority');
+app.set('db', 'mongodb://admin:sdi@sdi-entrega2-shard-00-00.dmatw.mongodb.net:27017,' +
+    'sdi-entrega2-shard-00-01.dmatw.mongodb.net:27017,' +
+    'sdi-entrega2-shard-00-02.dmatw.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet' +
+    '=atlas-103fus-shard-0&authSource=admin&retryWrites=true&w=majority');
 app.set('clave', 'abcdefg');
 app.set('crypto', crypto);
 
 //Rutas/controladores por lógica
-require('./routes/rusuarios.js')(app, swig, gestorBD);  // (app, param1, param2, etc.)
-require('./routes/rcanciones.js')(app, swig, gestorBD);  // (app, param1, param2, etc.)
-require('./routes/rautores.js')(app, swig);  // (app, param1, param2, etc.)
-require('./routes/utils.js')(app, swig);  // (app, param1, param2, etc.)
-require('./routes/rcomentarios.js')(app, swig, gestorBD);
-require('./routes/rfavoritos.js')(app, swig, gestorBD);
+require('./routes/rusuarios.js')(app, swig, gestorBD);
+require('./routes/rofertas.js')(app, swig, gestorBD);
+require('./routes/radmin.js')(app,swig, gestorBD);
+
 require('./routes/rapicanciones.js')(app, gestorBD);
+
+/**
+ * Redirección de la vista principal
+ */
 app.get('/', function (req, res) {
-    res.redirect('/tienda');
+    logger.info('Redirección desde raíz a la página principal')
+    res.redirect('/home');
 })
 
-app.use(function (err, req, res, next) {
-    console.log('Error producido: ' + err); //mostramos el error en consola
+/**
+ * Vista principal de la aplicación
+ */
+ app.get('/home', function (req, res) {
+    logger.info('Acceso a la vista principal de la aplicación');
+    let respuesta = swig.renderFile('views/home.html', {
+        usuario: req.session.usuario,
+        dinero: req.session.dinero,
+        rol: req.session.rol
+    });
+    res.send(respuesta);
+});
+
+
+/**
+ * Manero error páginas inexistentes
+ */
+app.get('*', (req, res, next) => {
+    next(new Error('Página no encontrada'))
+});
+
+/**
+ * Manejo de errores 
+ */
+app.use(function (err, req, res,next) {
+    logger.error('APP ERROR: '+err);
     if (!res.headersSent) {
         res.status(400);
         let respuesta = swig.renderFile('views/error.html', {
-            mensaje: err.message,
-            tipoMensaje: 'alert-danger' //por defecto
+            mensaje:  err.message,
+            tipoMensaje: 'alert-danger',
+            usuario: req.session.usuario,
+            dinero: req.session.dinero,
+            rol: req.session.rol
         });
         res.send(respuesta);
     }
 });
-// lanzar server
+
+/**
+ * Lanza el servidor
+ */
 https.createServer({
     key: fs.readFileSync('certificates/alice.key'),
     cert: fs.readFileSync('certificates/alice.crt')
 }, app).listen(app.get('port'), function () {
-    console.log('Servidor activo');
+    logger.info('Servidor activo');
 });
+
 

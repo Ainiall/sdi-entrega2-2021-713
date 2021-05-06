@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block titulo %} Wallapop {% endblock %}
+{% block contenido_principal %}
+<!--Búsqueda-->
+<div class="row">
+    <div id="custom-search-input ">
+        <form method="get" action="/ofertas">
+            <div class="input-group col-xs-8 col-sm-6 col-md-4 col-lg-5 pull-right">
+                <input type="text" class="search-query form-control" placeholder="Palabra a buscar"
+                       name="busqueda"/>
+                <span class="input-group-btn">
+                    <button class="btn" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<h2>Ofertas</h2>
+<div class="row">
+    <!--Inicio del Bloque oferta-->
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="text-center">Título</th>
+                <th class="text-center">Descripción</th>
+                <th class="text-center">Precio</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for oferta in ofertas %}
+                <tr>
+                    <td style="text-align:center">{{ oferta.titulo }}</td>
+                    <td style="text-align:center">{{ oferta.descripcion }}</td>
+                    <td style="text-align:center">{{ oferta.precio }}</td>
+                    <td>
+                        {% if oferta.vendida %}
+                        <button type="button" class="btn btn-secondary" disabled>Vendida</button>
+                        {% endif %}
+                        {% if !oferta.vendida %}
+                        <a class="btn btn-secondary" role="button"
+                           href="/ofertas/comprar/{{ oferta._id.toString() }}">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>Comprar</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+
+    <!--Fin del Bloque ofertas-->
+</div>
+
+<!--Paginación mostrar la actual y 2 anteriores y 2 siguientes-->
+<div class="row text-center">
+    <ul class="pagination">
+        {% for pagina in paginas %}
+        <li class="page-item" id="pi-{{pagina}}">
+            <a class="page-link" href="/ofertas?pg={{pagina}}">{{pagina}}</a>
+        </li>
+        {% endfor %}
+        <script>
+            $("#pi-" + "{{ actual }}").addClass("active");
+        </script>
+    </ul>
+</div>
+{% endblock %}

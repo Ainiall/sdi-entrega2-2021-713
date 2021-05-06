@@ -1,2 +1,2 @@
-# sdi-entrega2-2021-713
-Segunda entrega de SDI utilizando NodeJS
+# sdi2021-713-lab-node
+Laboratorio de SDI 2021-2021 con NodeJs

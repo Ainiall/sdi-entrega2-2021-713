@@ -32,7 +32,7 @@ module.exports = function (app, gestorBD) {
         let usuario = res.usuario;
 
         let errors = new Array();
-        esAutor(usuario, cancion_id, function (isAutor) {
+        esVendedor(usuario, cancion_id, function (isAutor) {
             if (isAutor) {
                 gestorBD.eliminarCancion(criterio, function (canciones) {
                     if (canciones == null) {
@@ -53,7 +53,7 @@ module.exports = function (app, gestorBD) {
     });
 
     app.post('/api/cancion', function (req, res) {
-        let cancion = {nombre: req.body.nombre, genero: req.body.genero, precio: req.body.precio, autor: res.usuario}
+        let cancion = {nombre: req.body.nombre, genero: req.body.genero, precio: req.body.precio, vendedor: res.usuario}
         // ¿Validar nombre, genero, precio?
         validar(cancion, function (errors) {
             if (errors !== null && errors.length > 0) {
@@ -107,7 +107,7 @@ module.exports = function (app, gestorBD) {
                 })
             } else {
                 res.status(500);
-                errors.push('El usuario no es el autor de la canción que intenta modificar');
+                errors.push('El usuario no es el vendedor de la canción que intenta modificar');
                 res.json({errores: errors});
             }
         })
@@ -142,8 +142,8 @@ module.exports = function (app, gestorBD) {
     });
 
     // AUXILIAR
-    function esAutor(usuario, cancionId, funcionCallback) {
-        let criterio = {$and: [{'_id': cancionId}, {'autor': usuario}]};
+    function esVendedor(usuario, cancionId, funcionCallback) {
+        let criterio = {$and: [{'_id': cancionId}, {'vendedor': usuario}]};
 
         gestorBD.obtenerCanciones(criterio, function (canciones) {
             if (canciones == null || canciones.length <= 0) {

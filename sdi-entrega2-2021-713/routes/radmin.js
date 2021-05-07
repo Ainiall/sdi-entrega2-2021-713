@@ -1,3 +1,4 @@
+// Utilidades
 const {logger} = require('../modules/logger');
 let utils = require('../utils/utils');
 /**
@@ -20,7 +21,7 @@ module.exports = function (app, swig, gestorBD) {
                     'Error al listar usuarios.', next);
             }
             logger.info('Lista de usuarios obtenida');
-            let respuesta = swig.renderFile('sdi-entrega2-2021-713/views/badmin.html',
+            let respuesta = swig.renderFile('views/badmin.html',
                 {
                     usuario: req.session.usuario,
                     rol: req.session.rol,

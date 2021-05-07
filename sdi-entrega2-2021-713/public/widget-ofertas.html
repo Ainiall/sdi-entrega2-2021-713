@@ -1,0 +1,80 @@
+<div id="widget-canciones">
+    <input type="text" class="form-control" placeholder="Filtrar por nombre" id="filtro-nombre"/>
+    <button class="btn" onclick="cargarOfertas()">Actualizar</button>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Vendedor</th>
+            <th class="col-md-1"></th>
+        </tr>
+        </thead>
+        <tbody id="tablaCuerpo">
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    window.history.pushState("", "", "/cliente.html?w=ofertas");
+    var ofertas;
+
+    function cargarOfertas() {
+        $.ajax({
+            url: URLbase + "/ofertas",
+            type: "GET",
+            data: {},
+            dataType: 'json',
+            headers: {"token": token},
+            success: function (respuesta) {
+                ofertas = respuesta;
+                actualizarTabla(ofertas);
+            },
+            error: function (error) {
+                $("#contenedor-principal").load("widget-login.html");
+            }
+        });
+    }
+
+    function actualizarTabla(ofertasMostrar) {
+        $("#tablaCuerpo").empty(); // Vaciar la tabla
+        for (let i = 0; i < ofertasMostrar.length; i++) {
+            let link="";
+            if (!ofertasMostrar[i].vendida) {
+                link= "<td>" +
+                    "<a onclick=chat('" + ofertasMostrar[i]._id + "')>" +
+                    "<span class=\"glyphicon glyphicon-envelope\"></span> Chat</a><br>" +
+                    "</td>";
+            }
+            $("#tablaCuerpo").append(
+                "<tr id=" + ofertasMostrar[i]._id + ">" +
+                "<td>" + ofertasMostrar[i].titulo + "</td>" +
+                "<td>" + ofertasMostrar[i].descripcion + "</td>" +
+                "<td>" + ofertasMostrar[i].precio + "</td>" +
+                "<td>" + ofertasMostrar[i].vendedor + "</td>" + link +
+                "</tr>");
+        }
+    }
+
+    cargarOfertas();
+
+    function chat(_id) {
+        idOfertaSeleccionada = _id;
+        $("#contenedor-principal").load("widget-mensajes.html");
+    }
+
+
+    $('#filtro-nombre').on('input', function (e) {
+        var ofertasFiltradas = [];
+        var nombreFiltro = $("#filtro-nombre").val();
+        for (let i = 0; i < ofertas.length; i++) {
+            if (ofertas[i].titulo.indexOf(nombreFiltro) !== -1) {
+                ofertasFiltradas.push(ofertas[i]);
+            }
+        }
+        actualizarTabla(ofertasFiltradas);
+    });
+</script>
+

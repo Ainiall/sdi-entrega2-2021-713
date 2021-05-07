@@ -1,3 +1,4 @@
+// Utilidades
 const {logger} = require('../modules/logger');
 let utils = require('../utils/utils');
 /**
@@ -18,7 +19,7 @@ module.exports = function (app, swig, gestorBD) {
             criterio = {
                 $and: [{
                     'titulo': {
-                        $regex: '.*' + esTexto(req.query.busqueda) + '.*',
+                        $regex: '.*' + utils.esTexto(req.query.busqueda) + '.*',
                         '$options': 'i'
                     }
                 }, {'vendedor': {$not: {$regex: req.session.usuario}}}]
@@ -45,7 +46,7 @@ module.exports = function (app, swig, gestorBD) {
                         paginas.push(i);
                     }
                 }
-                let respuesta = swig.renderFile('sdi-entrega2-2021-713/views/bofertas.html',
+                let respuesta = swig.renderFile('views/bofertas.html',
                     {
                         usuario: req.session.usuario,
                         dinero: req.session.dinero,
@@ -65,7 +66,7 @@ module.exports = function (app, swig, gestorBD) {
      */
     app.get('/ofertas/agregar', function (req, res) {
         logger.info('Acceso a la creación de ofertas');
-        let respuesta = swig.renderFile('sdi-entrega2-2021-713/views/bagregar.html',
+        let respuesta = swig.renderFile('views/bagregar.html',
             {
                 usuario: req.session.usuario,
                 dinero: req.session.dinero,
@@ -81,7 +82,7 @@ module.exports = function (app, swig, gestorBD) {
         let oferta = {
             titulo: req.body.titulo,
             descripcion: req.body.descripcion,
-            fecha: Date.now(),
+            fecha: new Date().toISOString().slice(0, 10),
             precio: req.body.precio,
             vendedor: req.session.usuario,
             vendida: false
@@ -93,8 +94,9 @@ module.exports = function (app, swig, gestorBD) {
         } else {
             // no puede tener campos vacíos
             if (utils.validarCampoVacio(req.body.titulo) || utils.validarCampoVacio(req.body.descripcion)){
-                utils.manejoAvisos(res, 'Intento de creación de oferta con campos vacíos:',
-                    'ofertas/agregar', 'Los campos no pueden estar vacíos');
+                utils.manejoAvisos(res, 'Intento de creación de oferta con campos vacíos o demasiado grandes',
+                    'ofertas/agregar', 'Los campos no pueden estar vacíos ni tener más de 50' +
+                    'caracteres');
             } else {
                 gestorBD.insertarOferta(oferta, function (id) {
                     if (id == null) {
@@ -120,7 +122,7 @@ module.exports = function (app, swig, gestorBD) {
                 utils.manejoErrores('Error al listar ofertas propias',
                     'Error al listar ofertas propias', next);
             } else {
-                let respuesta = swig.renderFile('sdi-entrega2-2021-713/views/bofertasPropias.html',
+                let respuesta = swig.renderFile('views/bofertasPropias.html',
                     {
                         ofertas: utils.filtrarOfertasPropias(ofertas),
                         usuario: req.session.usuario,
@@ -190,7 +192,7 @@ module.exports = function (app, swig, gestorBD) {
                 utils.manejoErrores('Intento de compra de oferta inexistente:' + req.params.id,
                     'No se puede comprar una oferta inexistente', next);
             } else {
-                // no puede comprarse una oferta propia n
+                // no puede comprarse una oferta propia
                 if (ofertas[0].vendedor === req.session.usuario) {
                     utils.manejoErrores('Intento de compra de una oferta propia:' + req.params.id,
                         'No se puede comprar una oferta propia', next);
@@ -292,7 +294,7 @@ module.exports = function (app, swig, gestorBD) {
                 let criterio = {'_id': {$in: ofertasCompradasIds}}
                 gestorBD.obtenerOfertas(criterio, function (ofertas) {
                     logger.info('Compras obtenidas de usuario: ' + req.session.usuario);
-                    let respuesta = swig.renderFile('sdi-entrega2-2021-713/views/bcompras.html',
+                    let respuesta = swig.renderFile('views/bcompras.html',
                         {
                             compras: utils.filtrarCompras(ofertas),
                             usuario: req.session.usuario,

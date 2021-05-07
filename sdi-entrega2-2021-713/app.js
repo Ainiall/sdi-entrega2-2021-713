@@ -4,9 +4,6 @@ let utils = require('./utils/utils');
 let express = require('express');
 let app = express();
 
-let rest = require('request');
-app.set('rest', rest);
-
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Credentials', 'true');
@@ -55,6 +52,7 @@ routerUsuarioToken.use(function (req, res, next) {
                 return;
             } else {// dejamos correr la petición
                 res.usuario = infoToken.usuario;
+                logger.info('Token usuario: '+ res.usuario);
                 next();
             }
         });
@@ -64,7 +62,9 @@ routerUsuarioToken.use(function (req, res, next) {
     }
 });
 // Aplicar router Usuario Token
-app.use('/api/cancion', routerUsuarioToken);
+app.use('/api/ofertas', routerUsuarioToken);
+app.use('/api/chat/*', routerUsuarioToken);
+app.use('/api/mensaje/*', routerUsuarioToken);
 
 /**
  * Router que se encarga de manejar las vistas privadas del usuario
@@ -128,7 +128,7 @@ require('./routes/rusuarios.js')(app, swig, gestorBD);
 require('./routes/rofertas.js')(app, swig, gestorBD);
 require('./routes/radmin.js')(app,swig, gestorBD);
 
-require('./routes/rapicanciones.js')(app, gestorBD);
+require('./routes/rapiofertas.js')(app, gestorBD);
 
 /**
  * Redirección de la vista principal

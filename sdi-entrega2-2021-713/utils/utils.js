@@ -91,8 +91,8 @@ module.exports = {
         return exp.test(email);
     },
     validarCampoVacio: function validarCampoVacio(campo) {
-        return (campo === null || typeof campo === undefined || campo.trim().length < 1
-            || campo.trim().length > 20);
+        return (campo === null || campo.trim().length < 1
+            || campo.trim().length > 50);
     },
     esTexto: function esTexto(text) {
         return text.trim().length === 0 ? "" : text;

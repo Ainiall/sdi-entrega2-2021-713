@@ -5086,3 +5086,560 @@
 [2021-05-06T22:42:31.519] [INFO] default - Acceso a la vista principal de la aplicación
 [2021-05-06T22:42:31.593] [INFO] default - Redirección desde raíz a la página principal
 [2021-05-06T22:42:31.597] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-07T01:54:07.300] [INFO] default - Servidor activo
+[2021-05-07T01:54:14.128] [ERROR] default - APP ERROR: TypeError: Cannot read property 'trim' of undefined
+[2021-05-07T01:54:14.361] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T01:54:18.560] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T01:54:18.561] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T01:54:22.066] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T01:54:22.743] [INFO] default - Usuario identificado:test@test.com
+[2021-05-07T01:54:22.776] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T01:54:22.777] [INFO] default - Acceso al listado de ofertas principal
+[2021-05-07T01:55:19.801] [INFO] default - Servidor activo
+[2021-05-07T01:55:38.049] [INFO] default - Servidor activo
+[2021-05-07T01:55:41.707] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-07T01:55:41.736] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-07T01:55:42.956] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T01:55:42.958] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T01:55:45.485] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T01:56:16.285] [INFO] default - Usuario identificado:user4@email.com
+[2021-05-07T01:56:25.363] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T01:56:39.184] [INFO] default - Acceso al listado de ofertas principal
+[2021-05-07T01:56:58.205] [INFO] default - Listado de ofertas mostrado
+[2021-05-07T01:57:17.353] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T01:57:21.714] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T01:57:33.088] [INFO] default - Acceso a la creación de ofertas
+[2021-05-07T02:03:52.674] [INFO] default - Servidor activo
+[2021-05-07T02:04:24.602] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-07T02:04:24.646] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-07T02:04:24.801] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T02:04:26.954] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:04:26.956] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:04:27.098] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T02:04:30.740] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:04:31.279] [INFO] default - Usuario identificado:user4@email.com
+[2021-05-07T02:04:31.310] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:04:31.312] [INFO] default - Acceso al listado de ofertas principal
+[2021-05-07T02:04:31.720] [INFO] default - Listado de ofertas mostrado
+[2021-05-07T02:04:33.803] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:04:33.804] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:04:33.804] [INFO] default - Acceso a la página de ofertas propias
+[2021-05-07T02:04:34.290] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T02:04:37.677] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:04:37.677] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:04:37.678] [INFO] default - Acceso a la creación de ofertas
+[2021-05-07T02:06:34.292] [INFO] default - Servidor activo
+[2021-05-07T02:06:38.466] [INFO] default - Usuario desconectado:undefined
+[2021-05-07T02:06:38.488] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:06:38.491] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:06:41.351] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:06:41.888] [INFO] default - Usuario identificado:user4@email.com
+[2021-05-07T02:06:41.910] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:06:41.912] [INFO] default - Acceso al listado de ofertas principal
+[2021-05-07T02:06:42.333] [INFO] default - Listado de ofertas mostrado
+[2021-05-07T02:06:42.478] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T02:06:44.930] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:06:44.932] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:06:44.933] [INFO] default - Acceso a la creación de ofertas
+[2021-05-07T02:08:44.271] [INFO] default - Servidor activo
+[2021-05-07T02:08:46.347] [INFO] default - Servidor activo
+[2021-05-07T02:08:51.817] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:08:51.818] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:08:52.037] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T02:08:54.614] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:08:54.615] [INFO] default - Acceso al formulario de registro
+[2021-05-07T02:10:55.229] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:10:56.119] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:10:56.119] [INFO] default - Acceso al listado de ofertas principal
+[2021-05-07T02:10:56.530] [INFO] default - Listado de ofertas mostrado
+[2021-05-07T02:13:08.295] [INFO] default - Servidor activo
+[2021-05-07T02:13:11.577] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:13:11.579] [INFO] default - Usuario sin identificar va a : /ofertas
+[2021-05-07T02:13:11.600] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:13:11.603] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:13:16.027] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:13:16.544] [INFO] default - Usuario identificado:user4@email.com
+[2021-05-07T02:13:16.570] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:13:16.573] [INFO] default - Acceso al listado de ofertas principal
+[2021-05-07T02:13:17.017] [INFO] default - Listado de ofertas mostrado
+[2021-05-07T02:13:19.120] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:13:19.122] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:13:19.124] [INFO] default - Acceso a la creación de ofertas
+[2021-05-07T02:13:19.125] [ERROR] default - APP ERROR: Error: ENOENT: no such file or directory, open 'C:\Users\Aini\WebstormProjects\sdi-entrega2-2021-713\sdi-entrega2-2021-713\views\bagregarOfertas.html'
+[2021-05-07T02:13:45.991] [INFO] default - Servidor activo
+[2021-05-07T02:13:48.212] [INFO] default - Usuario desconectado:undefined
+[2021-05-07T02:13:48.229] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:13:48.231] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:13:51.966] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:13:52.408] [INFO] default - Usuario identificado:user4@email.com
+[2021-05-07T02:13:52.434] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:13:52.436] [INFO] default - Acceso al listado de ofertas principal
+[2021-05-07T02:13:52.868] [INFO] default - Listado de ofertas mostrado
+[2021-05-07T02:13:56.226] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:13:56.228] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:13:56.232] [INFO] default - Acceso a la creación de ofertas
+[2021-05-07T02:25:04.351] [INFO] default - Servidor activo
+[2021-05-07T02:25:10.070] [INFO] default - Redirección desde raíz a la página principal
+[2021-05-07T02:25:10.105] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-07T02:25:10.286] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T02:25:11.638] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:25:11.640] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:25:18.298] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:25:18.887] [INFO] default - Usuario identificado:test@test.com
+[2021-05-07T02:25:18.912] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:25:18.914] [INFO] default - Acceso al listado de ofertas principal
+[2021-05-07T02:25:19.353] [INFO] default - Listado de ofertas mostrado
+[2021-05-07T02:25:20.968] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:25:20.970] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:25:20.971] [INFO] default - Acceso a la creación de ofertas
+[2021-05-07T02:25:39.285] [ERROR] default - Intento de creación de oferta con campos vacíos:
+[2021-05-07T02:25:39.300] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:25:39.302] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:25:39.304] [INFO] default - Acceso a la creación de ofertas
+[2021-05-07T02:26:11.954] [INFO] default - Servidor activo
+[2021-05-07T02:26:14.083] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:26:14.084] [INFO] default - Usuario sin identificar va a : /ofertas/agregar?mensaje=Los%20campos%20no%20pueden%20estar%20vac%C3%ADos&tipoMensaje=alert-danger
+[2021-05-07T02:26:14.108] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:26:14.110] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:26:18.020] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:26:18.432] [INFO] default - Usuario identificado:test@test.com
+[2021-05-07T02:26:18.449] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:26:18.451] [INFO] default - Acceso al listado de ofertas principal
+[2021-05-07T02:26:19.066] [INFO] default - Listado de ofertas mostrado
+[2021-05-07T02:26:24.474] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:26:24.475] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:26:24.477] [INFO] default - Acceso a la creación de ofertas
+[2021-05-07T02:28:20.528] [INFO] default - Servidor activo
+[2021-05-07T02:28:23.922] [ERROR] default - Intento de creación de oferta con campos vacíos o demasiado grandes
+[2021-05-07T02:28:23.946] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:28:23.946] [INFO] default - Usuario sin identificar va a : /ofertas/agregar?mensaje=Los%20campos%20no%20pueden%20estar%20vac%C3%ADos%20ni%20tener%20m%C3%A1s%20de%2020caracteres&tipoMensaje=alert-danger
+[2021-05-07T02:28:23.961] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:28:23.962] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:28:27.169] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:28:27.680] [INFO] default - Usuario identificado:test@test.com
+[2021-05-07T02:28:27.691] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:28:27.692] [INFO] default - Acceso al listado de ofertas principal
+[2021-05-07T02:28:28.132] [INFO] default - Listado de ofertas mostrado
+[2021-05-07T02:28:29.964] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:28:29.965] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:28:29.967] [INFO] default - Acceso a la creación de ofertas
+[2021-05-07T02:28:43.187] [INFO] default - Nueva oferta creada por usuario:test@test.com
+[2021-05-07T02:28:43.206] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:28:43.207] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T02:28:43.208] [INFO] default - Acceso a la página de ofertas propias
+[2021-05-07T02:28:47.588] [INFO] default - Usuario desconectado:test@test.com
+[2021-05-07T02:28:47.596] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:28:47.597] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:32:30.542] [INFO] default - Servidor activo
+[2021-05-07T02:35:00.877] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:35:00.878] [INFO] default - Usuario identificado va a : /identificarse
+[2021-05-07T02:35:00.896] [INFO] default - Acceso a la vista principal de la aplicación
+[2021-05-07T02:35:07.580] [INFO] default - Usuario desconectado:test@test.com
+[2021-05-07T02:35:07.594] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:35:07.595] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:35:09.934] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:35:09.935] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:35:17.929] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:35:17.930] [ERROR] default - Intento de inicio de sesión fallido por campos incorrectos
+[2021-05-07T02:35:17.943] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:35:17.944] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:35:23.759] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:35:24.232] [INFO] default - Usuario identificado:admin@email.com
+[2021-05-07T02:35:24.245] [INFO] default - Accediendo al router de sesión privada de administrador
+[2021-05-07T02:35:24.246] [INFO] default - Acceso al perfil de administración
+[2021-05-07T02:35:51.863] [INFO] default - Servidor activo
+[2021-05-07T02:35:53.763] [INFO] default - Accediendo al router de sesión privada de administrador
+[2021-05-07T02:35:53.765] [INFO] default - Usuario sin identificar va a : /admin
+[2021-05-07T02:35:53.786] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:35:53.788] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:35:57.936] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:35:58.347] [INFO] default - Usuario identificado:admin@email.com
+[2021-05-07T02:35:58.361] [INFO] default - Accediendo al router de sesión privada de administrador
+[2021-05-07T02:35:58.362] [INFO] default - Acceso al perfil de administración
+[2021-05-07T02:35:58.751] [INFO] default - Lista de usuarios obtenida
+[2021-05-07T02:36:05.054] [INFO] default - Accediendo al router de sesión privada de administrador
+[2021-05-07T02:36:05.054] [INFO] default - Accediendo al router de sesión privada de administrador
+[2021-05-07T02:36:05.055] [INFO] default - Intentando eliminar usuario: pruebaError@error.com
+[2021-05-07T02:36:06.183] [INFO] default - Usuario(s) eliminado(s)
+[2021-05-07T02:36:06.268] [INFO] default - Accediendo al router de sesión privada de administrador
+[2021-05-07T02:36:06.269] [INFO] default - Acceso al perfil de administración
+[2021-05-07T02:36:06.641] [INFO] default - Lista de usuarios obtenida
+[2021-05-07T02:36:09.218] [INFO] default - Usuario desconectado:admin@email.com
+[2021-05-07T02:36:09.232] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T02:36:09.233] [INFO] default - Acceso al formulario de inicio de sesión
+[2021-05-07T02:53:23.854] [INFO] default - Servidor activo
+[2021-05-07T02:55:33.215] [INFO] default - Servidor activo
+[2021-05-07T02:56:06.800] [INFO] default - Servidor activo
+[2021-05-07T02:56:08.806] [INFO] default - Token usuariotest@test.com
+[2021-05-07T02:56:12.282] [INFO] default - Token usuariotest@test.com
+[2021-05-07T02:56:28.897] [INFO] default - Servidor activo
+[2021-05-07T02:56:53.223] [INFO] default - Servidor activo
+[2021-05-07T02:56:58.944] [INFO] default - Token usuario: test@test.com
+[2021-05-07T02:57:02.222] [INFO] default - Token usuario: test@test.com
+[2021-05-07T09:42:08.774] [INFO] default - Servidor activo
+[2021-05-07T09:42:12.021] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T09:42:16.653] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T09:43:50.270] [INFO] default - Servidor activo
+[2021-05-07T09:43:57.138] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T09:44:00.475] [INFO] default - Token usuario: test@test.com
+[2021-05-07T09:44:00.477] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T09:44:06.338] [INFO] default - Token usuario: test@test.com
+[2021-05-07T09:44:06.339] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T09:44:36.176] [INFO] default - Servidor activo
+[2021-05-07T10:06:29.170] [INFO] default - Servidor activo
+[2021-05-07T10:07:04.405] [INFO] default - Servidor activo
+[2021-05-07T10:07:55.044] [INFO] default - Servidor activo
+[2021-05-07T10:17:35.364] [INFO] default - Servidor activo
+[2021-05-07T11:48:15.840] [INFO] default - Servidor activo
+[2021-05-07T11:48:20.003] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T11:48:23.480] [INFO] default - undefined
+[2021-05-07T11:49:07.996] [INFO] default - Servidor activo
+[2021-05-07T11:49:21.484] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:03:39.729] [INFO] default - Servidor activo
+[2021-05-07T12:03:48.022] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:04:38.191] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:04:45.707] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:04:47.595] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:05:11.545] [INFO] default - Servidor activo
+[2021-05-07T12:05:17.568] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:05:18.819] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:06:59.784] [INFO] default - Servidor activo
+[2021-05-07T12:07:08.418] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:07:13.865] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:08:04.786] [INFO] default - Servidor activo
+[2021-05-07T12:08:09.073] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:08:11.155] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:08:51.837] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:15:01.014] [INFO] default - Servidor activo
+[2021-05-07T12:15:07.738] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:15:09.273] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T12:15:11.258] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T12:15:51.442] [INFO] default - Servidor activo
+[2021-05-07T12:15:53.796] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:15:55.733] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T12:15:56.636] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T12:15:56.814] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T12:15:57.030] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T12:15:58.262] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T12:15:58.591] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T12:15:58.765] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T12:16:10.664] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:16:33.773] [INFO] default - Servidor activo
+[2021-05-07T12:16:38.702] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:16:39.878] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:18:10.199] [INFO] default - Servidor activo
+[2021-05-07T12:18:10.232] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:18:15.236] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:18:17.158] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:18:55.459] [INFO] default - Servidor activo
+[2021-05-07T12:18:55.612] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:18:58.348] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:20:25.568] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:20:27.771] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:21:14.196] [INFO] default - Servidor activo
+[2021-05-07T12:21:14.234] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:21:17.457] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:21:20.767] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:21:27.020] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:23:12.391] [INFO] default - Servidor activo
+[2021-05-07T12:23:15.299] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:23:16.843] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:25:17.695] [INFO] default - Servidor activo
+[2021-05-07T12:25:41.377] [INFO] default - Servidor activo
+[2021-05-07T12:25:50.104] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:25:51.550] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:30:50.631] [INFO] default - Servidor activo
+[2021-05-07T12:33:47.064] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T12:33:50.483] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:35:42.898] [INFO] default - Servidor activo
+[2021-05-07T12:35:50.600] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:35:58.224] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:38:15.682] [INFO] default - Servidor activo
+[2021-05-07T12:38:23.041] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:38:25.761] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:39:47.234] [INFO] default - Servidor activo
+[2021-05-07T12:39:50.204] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:39:53.048] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:39:59.354] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:40:06.528] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:44:12.316] [INFO] default - Servidor activo
+[2021-05-07T12:44:15.571] [INFO] default - Accediendo al router de sesión pública
+[2021-05-07T12:44:16.270] [INFO] default - Usuario identificado:test@test.com
+[2021-05-07T12:44:16.440] [INFO] default - Accediendo al router de sesión privada de usuario
+[2021-05-07T12:44:16.453] [INFO] default - Acceso al listado de ofertas principal
+[2021-05-07T12:44:17.060] [INFO] default - Listado de ofertas mostrado
+[2021-05-07T12:44:28.124] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:44:31.172] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:44:31.179] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T12:58:12.301] [INFO] default - Servidor activo
+[2021-05-07T12:58:17.263] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:59:04.686] [INFO] default - Servidor activo
+[2021-05-07T12:59:06.944] [INFO] default - Token usuario: test@test.com
+[2021-05-07T12:59:21.593] [INFO] default - Token usuario: user4@email.com
+[2021-05-07T13:06:40.130] [INFO] default - Servidor activo
+[2021-05-07T13:06:45.399] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:08:13.417] [INFO] default - Servidor activo
+[2021-05-07T13:08:15.616] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:08:56.220] [INFO] default - Servidor activo
+[2021-05-07T13:09:08.297] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:11:00.730] [INFO] default - Servidor activo
+[2021-05-07T13:11:00.969] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:11:56.499] [INFO] default - Servidor activo
+[2021-05-07T13:12:12.887] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:12:15.112] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:13:33.082] [INFO] default - Servidor activo
+[2021-05-07T13:13:44.497] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:13:46.011] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:13:48.726] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:22:43.209] [INFO] default - Servidor activo
+[2021-05-07T13:22:49.076] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T13:22:52.740] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:22:56.015] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:26:54.648] [INFO] default - Servidor activo
+[2021-05-07T13:27:15.951] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T13:27:20.015] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:27:21.714] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:27:50.113] [INFO] default - Servidor activo
+[2021-05-07T13:27:53.724] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:27:57.451] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:27:59.367] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:28:02.030] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:32:53.527] [INFO] default - Servidor activo
+[2021-05-07T13:33:01.221] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:33:11.452] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:33:11.988] [INFO] default - Mensaje insertado6095257785f1ae34c4cc7b09
+[2021-05-07T13:33:16.507] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:35:02.644] [INFO] default - Servidor activo
+[2021-05-07T13:35:04.656] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:35:07.425] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:35:09.373] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:35:13.038] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:36:32.039] [INFO] default - Mensaje insertado6095263ff8b6003b7007b887
+[2021-05-07T13:36:32.114] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:38:45.446] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:38:47.632] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:38:50.607] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:38:52.659] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:38:54.566] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:38:57.946] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:39:49.934] [INFO] default - Servidor activo
+[2021-05-07T13:39:54.363] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T13:39:57.312] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:42:15.177] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:44:46.419] [INFO] default - Servidor activo
+[2021-05-07T13:44:50.364] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T13:44:53.457] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:44:55.294] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:44:56.136] [ERROR] default - Error al obtener los mensajes
+[2021-05-07T13:45:18.803] [INFO] default - Servidor activo
+[2021-05-07T13:45:25.012] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:45:26.464] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:45:27.229] [ERROR] default - Error al obtener los mensajes
+[2021-05-07T13:47:08.349] [INFO] default - Servidor activo
+[2021-05-07T13:47:45.256] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:47:47.284] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:57:57.173] [INFO] default - Servidor activo
+[2021-05-07T13:58:04.366] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T13:59:17.224] [INFO] default - Servidor activo
+[2021-05-07T13:59:18.703] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T13:59:22.001] [INFO] default - Token usuario: test@test.com
+[2021-05-07T13:59:23.604] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:00:02.711] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:00:04.816] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:00:10.722] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:00:10.726] [ERROR] default - APP ERROR: TypeError: Date.toLocaleString is not a constructor
+[2021-05-07T14:00:15.839] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:00:17.739] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:00:54.236] [INFO] default - Servidor activo
+[2021-05-07T14:00:57.664] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:00:57.842] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T14:00:59.592] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:01:17.859] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:02:16.527] [INFO] default - Servidor activo
+[2021-05-07T14:02:20.742] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:02:23.576] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:02:25.705] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:02:27.585] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:06:04.573] [INFO] default - Servidor activo
+[2021-05-07T14:06:04.699] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:06:10.478] [ERROR] default - APP ERROR: TypeError: Date(...).toISOString is not a function
+[2021-05-07T14:06:13.199] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:06:13.205] [ERROR] default - APP ERROR: TypeError: Date(...).toISOString is not a function
+[2021-05-07T14:06:27.026] [INFO] default - Servidor activo
+[2021-05-07T14:06:35.069] [INFO] default - Servidor activo
+[2021-05-07T14:06:41.782] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:06:44.661] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:06:48.339] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:07:13.727] [INFO] default - Servidor activo
+[2021-05-07T14:07:14.043] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:07:14.602] [INFO] default - Mensaje insertado60952d72c70f700c14937743
+[2021-05-07T14:07:14.876] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:07:55.564] [INFO] default - Servidor activo
+[2021-05-07T14:07:57.424] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:07:59.577] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:26:39.701] [INFO] default - Servidor activo
+[2021-05-07T14:26:48.438] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:26:48.444] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:26:48.866] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:26:50.413] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:26:50.415] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T14:26:51.203] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T14:31:25.656] [INFO] default - Servidor activo
+[2021-05-07T14:31:27.503] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T14:31:34.981] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:31:34.983] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:31:35.346] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:31:37.543] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:31:37.546] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T14:31:38.564] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T14:33:18.672] [INFO] default - Servidor activo
+[2021-05-07T14:33:21.390] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:33:21.400] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:33:22.044] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:33:24.046] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:33:24.052] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T14:33:24.932] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T14:42:05.978] [INFO] default - Servidor activo
+[2021-05-07T14:42:08.851] [ERROR] default - APP ERROR: Error: Página no encontrada
+[2021-05-07T14:42:13.180] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:42:13.181] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:42:13.570] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:42:15.216] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:42:15.218] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T14:42:15.946] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T14:42:55.835] [INFO] default - Servidor activo
+[2021-05-07T14:42:57.758] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:42:57.771] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:42:58.301] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:43:00.872] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:43:00.873] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:43:01.290] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:43:02.495] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:43:02.498] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T14:43:03.289] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T14:43:39.263] [INFO] default - Servidor activo
+[2021-05-07T14:43:41.565] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:43:41.575] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:43:42.246] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:43:45.178] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:43:45.181] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:43:45.553] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:43:46.562] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:43:46.565] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T14:43:47.364] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T14:44:46.684] [INFO] default - Servidor activo
+[2021-05-07T14:44:48.810] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:44:48.816] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:44:49.426] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:44:52.121] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:44:52.123] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:44:52.478] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:44:53.869] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:44:53.872] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T14:44:54.666] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T14:45:01.455] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:45:01.458] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:45:01.855] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:45:07.190] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:45:07.191] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:45:07.590] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:45:08.216] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:45:08.219] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T14:45:09.034] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T14:46:42.293] [INFO] default - Servidor activo
+[2021-05-07T14:46:47.505] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:46:47.509] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:46:48.152] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:46:49.281] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:46:49.289] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T14:46:50.114] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T14:48:15.890] [INFO] default - Servidor activo
+[2021-05-07T14:48:24.478] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:48:24.489] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:48:25.167] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:48:42.811] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:48:42.818] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:48:43.225] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:48:45.046] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:48:45.049] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T14:48:45.879] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T14:50:11.607] [INFO] default - Servidor activo
+[2021-05-07T14:50:16.229] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:50:16.234] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:50:16.654] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:50:18.203] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:50:18.211] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T14:50:18.988] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T14:52:17.964] [INFO] default - Servidor activo
+[2021-05-07T14:52:20.317] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:52:20.325] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T14:52:21.077] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T14:52:22.317] [INFO] default - Token usuario: test@test.com
+[2021-05-07T14:52:22.324] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T14:52:23.164] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T15:05:59.358] [INFO] default - Servidor activo
+[2021-05-07T15:06:04.972] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:06:04.981] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T15:06:05.368] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T15:06:06.848] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:06:06.850] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T15:06:07.677] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T15:08:43.192] [INFO] default - Servidor activo
+[2021-05-07T15:08:44.914] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:08:44.924] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T15:08:45.603] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T15:08:48.090] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:08:48.092] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T15:08:48.493] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T15:08:49.806] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:08:49.808] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T15:08:50.585] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T15:10:39.931] [INFO] default - Servidor activo
+[2021-05-07T15:10:43.974] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:10:43.979] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T15:10:44.646] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T15:10:46.812] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:10:46.814] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T15:10:47.218] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T15:10:48.502] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:10:48.506] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T15:10:49.319] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T15:13:15.780] [INFO] default - Servidor activo
+[2021-05-07T15:13:17.276] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:13:17.283] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T15:13:17.914] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T15:13:18.412] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:13:18.420] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T15:13:19.231] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T15:14:15.217] [INFO] default - Servidor activo
+[2021-05-07T15:14:16.865] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:14:16.869] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T15:14:17.430] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T15:14:18.272] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:14:18.276] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T15:14:19.213] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T15:15:17.542] [INFO] default - Servidor activo
+[2021-05-07T15:15:22.476] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:15:22.481] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T15:15:22.914] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T15:15:24.056] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:15:24.061] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T15:15:24.879] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T15:15:38.834] [INFO] default - Servidor activo
+[2021-05-07T15:15:43.322] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:15:43.330] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T15:15:43.879] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T15:15:46.175] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:15:46.183] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T15:15:47.258] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T15:16:03.732] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:16:04.204] [INFO] default - Mensaje insertado60953d9435a1382f4c0ab426
+[2021-05-07T15:16:04.280] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:16:04.283] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T15:16:05.095] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc
+[2021-05-07T15:16:30.239] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:16:30.242] [INFO] default - Acceso API listado de ofertas
+[2021-05-07T15:16:30.744] [INFO] default - Listado de ofertas obtenido via API
+[2021-05-07T15:18:29.123] [INFO] default - Token usuario: test@test.com
+[2021-05-07T15:18:29.126] [INFO] default - Acceso API chat oferta60931a633fb1b12b508c49cc
+[2021-05-07T15:18:30.119] [INFO] default - Chat obtenido a través de la API:60931a633fb1b12b508c49cc

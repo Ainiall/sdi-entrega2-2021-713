@@ -21,7 +21,7 @@
 <script>
     window.history.pushState("", "", "/cliente.html?w=login");
     $("#boton-login").click(function (){
-        $("#alerta").remove(); //resetear mensajes error
+        $("#alertas").remove(); //resetear mensajes error
         $.ajax({
             url: URLbase + "/autenticar",
             type: "POST",
@@ -39,7 +39,7 @@
             error : function (error) {
                 Cookies.remove('token');
                 $("#widget-login")
-                    .prepend("<div id='alerta' name='alerta' " +
+                    .prepend("<div id='alertas' name='alertas' " +
                         "class='alert alert-danger'>" +
                         "<span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>" +
                         "Usuario no encontrado</div>");

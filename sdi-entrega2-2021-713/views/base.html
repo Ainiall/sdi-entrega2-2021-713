@@ -4,17 +4,19 @@
     <title>{% block titulo %} Wallapop {% endblock %}</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    {% block scripts %}  {% endblock %}
+    {% block scripts %} {% endblock %}
 </head>
 <body>
 <!-- Barra de Navegación superior -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#myNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -25,16 +27,19 @@
             {% if rol == 'USUARIO' %}
             <ul class="nav navbar-nav">
                 <!-- USUARIO ESTANDAR -->
-                <li id="mOfertas" class="active"><a href="/ofertas">Ofertas</a></li>
-                <li id="mCompras"><a href="/ofertas/mis-compras">Mis Compras</a></li>
+                <li id="mOfertas" class="active"><a href="/ofertas">Ofertas</a>
+                </li>
+                <li id="mCompras"><a href="/ofertas/mis-compras">Mis Compras</a>
+                </li>
 
                 <li id="mMisOfertas" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <span>Mis ofertas</span> <span class="caret"></span>
-                </a>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="/ofertas/agregar">Agregar oferta</a></li>
-                        <li><a href="/ofertas/mis-ofertas">Ver mis ofertas</a></li>
+                        <li><a href="/ofertas/mis-ofertas">Ver mis ofertas</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -42,15 +47,21 @@
 
             <ul class="nav navbar-nav navbar-right">
                 {% if usuario == null %}
-                    <li><a href="/registrarse"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
-                    <li><a href="/identificarse"><span class="glyphicon glyphicon-log-in"></span> Identifícate</a></li>
+                <li><a href="/registrarse"><span
+                        class="glyphicon glyphicon-user"></span> Registrate</a>
+                </li>
+                <li><a href="/identificarse"><span
+                        class="glyphicon glyphicon-log-in"></span> Identifícate</a>
+                </li>
                 {% endif %}
                 {% if usuario != null %}
-                    <li><a href="#"> {{ usuario }}</a></li>
-                    {% if rol != 'ADMIN' %}
-                        <li><a href="#"> {{ dinero }} €</a></li>
-                    {% endif %}
-                    <li><a href="/desconectarse"><span class="glyphicon glyphicon-log-out"></span> Cierra sesión</a></li>
+                <li><a href="#"> {{ usuario }}</a></li>
+                {% if rol != 'ADMIN' %}
+                <li><a id="dinero" href="#"> {{ dinero }} €</a></li>
+                {% endif %}
+                <li><a href="/desconectarse"><span
+                        class="glyphicon glyphicon-log-out"></span> Cierra
+                    sesión</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -65,13 +76,16 @@
         /* const params = new URLSearchParams(location.search);
         var mensaje = params.get("mensaje");
         var tipoMensaje = params.get("mensaje");*/
-        if ( mensaje != ""){
-            if (tipoMensaje == "" ){
+        if (mensaje != "") {
+            if (tipoMensaje == "") {
                 tipoMensaje = 'alert-info';
             }
-            $( ".container" )
-                .append("<div class='alert "+tipoMensaje+"'>"+mensaje+" </div>");
+            $(".container")
+                .append("<div id='alertas' class='alert " + tipoMensaje + " '>" +
+                    "<span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>"
+                    + mensaje + " </div>");
         }
+
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
             var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');

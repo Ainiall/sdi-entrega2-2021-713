@@ -28,7 +28,7 @@
                         <td style="text-align:center">{{ user.nombre }}</td>
                         <td style="text-align:center">{{ user.apellidos }}</td>
                         <td style="text-align:center">
-                            <input type="checkbox" id="userEmail"
+                            <input type="checkbox" id="cb{{user.email.toString()}}"
                                    name="userEmail" value="{{ user.email.toString() }}"/></td>
                     </tr>
                     {% endfor%}

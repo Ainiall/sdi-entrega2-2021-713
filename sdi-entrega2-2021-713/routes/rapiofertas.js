@@ -21,7 +21,7 @@ module.exports = function (app, gestorBD) {
             password: seguro
         }
 
-        gestorBD.obtenerUsuarios(criterio, function (usuarios) {
+        gestorBD.obtener('usuarios', criterio, function (usuarios) {
             if (usuarios == null || usuarios.length === 0) {
                 res.status(401); // Unauthorized
                 res.json({
@@ -29,7 +29,10 @@ module.exports = function (app, gestorBD) {
                 })
             } else {
                 let token = app.get('jwt').sign(
-                    {usuario: criterio.email, tiempo: Date.now() / 1000}, 'secreto');
+                    {
+                        usuario: criterio.email,
+                        tiempo: Date.now() / 1000
+                    }, 'secreto');
                 res.status(200);
                 res.json({
                     autenticado: true,
@@ -45,7 +48,7 @@ module.exports = function (app, gestorBD) {
     app.get('/api/ofertas', function (req, res) {
         logger.info('Acceso API listado de ofertas');
         let criterio = {'vendedor': {$not: {$regex: res.usuario}}};
-        gestorBD.obtenerOfertas(criterio, function (ofertas) {
+        gestorBD.obtener('ofertas', criterio, function (ofertas) {
             if (ofertas == null) {
                 logger.error('Error al obtener el listado de ofertas via API');
                 res.status(500);
@@ -61,71 +64,41 @@ module.exports = function (app, gestorBD) {
     /**
      * Obtención de un chat de una oferta determinada por parámetro
      */
-    app.get('/api/chat/:ofertaId', function (req, res) {
-        logger.info('Acceso API chat oferta' + req.params.ofertaId);
+    app.get('/api/mensajes/:ofertaId', function (req, res) {
+        logger.info('Acceso API chat oferta: ' + req.params.ofertaId);
         let criterio = {'_id': gestorBD.mongo.ObjectID(req.params.ofertaId)}
+
         let criterioChat = {
             $and: [{
                 'ofertaId': gestorBD.mongo.ObjectID(req.params.ofertaId)
             },
-                {'autor': res.usuario}]
+                {'interesado': res.usuario}]
         }
 
-        gestorBD.obtenerOfertas(criterio, function (ofertas) {
+        gestorBD.obtener('ofertas', criterio, function (ofertas) {
             if (ofertas == null) {
                 logger.error('Error al obtener la oferta' + req.params.ofertaId);
                 res.status(500);
                 res.json({error: 'Se ha producido un error al obtener las ofertas'})
             } else {
-                if(ofertas[0].vendida){
-                    logger.error('No se puede tener chats de ofertas vendidas' + req.params.ofertaId);
-                    res.status(500);
-                    res.json({error: 'No se pueden tener chats de ofertas vendidas'})
-                }else{
-                    gestorBD.obtenerMensajes(criterioChat, function (mensajes) {
-                        if (mensajes === null) {
-                            logger.error('Error al obtener los mensajes');
-                            res.status(500);
-                            res.json({error: 'Se ha producido un error al obtener los mensajes'})
-                        } else {
-                            logger.info('Chat obtenido a través de la API:' + req.params.ofertaId);
-                            res.status(200);
-                            res.send(JSON.stringify(ofertas[0], mensajes));
-                        }
-                    });
-                }
-            }
-        });
-    });
-
-    /**
-     * Inserción de mensajes en un chat de una oferta determinada por parámetro
-     */
-    app.post('/api/mensaje/:ofertaId', function (req, res) {
-        let ofertaId = gestorBD.mongo.ObjectID(req.params.ofertaId);
-        let mensaje = {
-            autor: res.usuario,
-            texto: req.body.texto,
-            ofertaId: ofertaId,
-            fecha: new Date().toISOString().slice(0, 10),
-            leido: false
-        }
-
-        utils.validar(mensaje, ofertaId, res.usuario, function (errors) {
-            if (errors !== null && errors.length > 0) {
-                res.status(403);
-                res.json({errores: errors})
-            } else {
-                gestorBD.insertarMensaje(mensaje, function (id) {
-                    if (id == null) {
-                        logger.error('Error al insertar el mensaje');
-                        errors.push('Se ha producido un error');
+                gestorBD.obtener('chats', criterioChat, function (chats) {
+                    if (chats === null || chats.length === 0) {
+                        logger.error('Error al obtener el chat: Chat vacío');
                         res.status(500);
-                        res.json({errores: errors})
+                        res.json({error: 'No hay mensajes en este chat'})
                     } else {
-                        logger.info('Mensaje insertado' + id);
-                        res.status(201);
-                        res.json({mensaje: 'Mensaje insertado', _id: id})
+                        criterio = {chatId: chats[0]._id}
+                        gestorBD.obtener('mensajes', criterio, function (mensajes) {
+                            if (mensajes === null) {
+                                logger.error('Error al obtener los mensajes');
+                                res.status(500);
+                                res.json({error: 'Se ha producido un error al obtener los mensajes'})
+                            } else {
+                                logger.info('Chat obtenido a través de la API:' + req.params.ofertaId);
+                                res.status(200);
+                                res.send(JSON.stringify(mensajes));
+                            }
+                        });
                     }
                 });
             }
@@ -133,9 +106,75 @@ module.exports = function (app, gestorBD) {
     });
 
     /**
+     * Inserción de mensajes en un chat de una oferta determinada por parámetro
+     */
+    app.post('/api/mensajes/:ofertaId', function (req, res, next) {
+            let ofertaId = gestorBD.mongo.ObjectID(req.params.ofertaId);
+            let chatId = null;
+
+            let criterio = {'_id': ofertaId};
+
+            gestorBD.obtener('ofertas', criterio, function (ofertas) {
+                if (ofertas == null) {
+                    utils.manejoErrores('Intento de mandar un mensaje a una oferta inexistente:' + ofertaId,
+                        'La oferta a la que quiere enviar un mensaje no existe', next)
+                } else {
+                    if (ofertas[0].comprador !== null) {
+                        utils.manejoErrores('Intento de mandar un mensaje a una oferta vendida:' + ofertaId,
+                            'La oferta a la que quiere enviar un mensaje ya ha sido vendida', next)
+                    } else {
+                        let mensaje = {
+                            interesado: res.usuario,
+                            vendedor: ofertas[0].vendedor,
+                            texto: req.body.texto,
+                            chatId: chatId,
+                            fecha: new Date().toISOString().slice(0, 16).replace('T', ' '),
+                            leido: false
+                        }
+
+                        criterio = {
+                            $and: [{'interesado': res.usuario},
+                                {'vendedor': ofertas[0].vendedor},
+                                {'ofertaId': ofertaId}]
+                        };
+
+                        gestorBD.obtener('chats', criterio, function (chats) {
+                            if (chats === null || chats.length === 0) {
+                                if (res.usuario === ofertas[0].vendedor) {
+                                    utils.manejoErrores('Intento de mandar un mensaje a una oferta vendida:' + ofertaId,
+                                        'La oferta a la que quiere enviar un mensaje ya ha sido vendida', next);
+                                } else {
+                                    let chat = {
+                                        interesado: res.usuario,
+                                        ofertaId: ofertaId,
+                                        vendedor: ofertas[0].vendedor
+                                    }
+                                    gestorBD.insertar('chats', chat, function (id) {
+                                        if (id === null) {
+                                            logger.error('Error al insertar el chat');
+                                            res.status(500);
+                                            res.json({error: 'Se ha producido un error al insertar el chat'})
+                                        } else {
+                                            mensaje.chatId = id;
+                                            insertarMensaje(req, res, ofertaId, mensaje);
+                                        }
+                                    });
+                                }
+                            } else {
+                                mensaje.chatId = chats[0]._id;
+                                insertarMensaje(req, res, ofertaId, mensaje);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    );
+
+    /**
      * Eliminación de un chat de una oferta determinada por parámetro
      */
-    app.delete('/api/chat/:id', function (req, res) {
+    app.delete('/api/mensajes/:id', function (req, res) {
         let criterio = {'_id': gestorBD.mongo.ObjectID(req.params.id)}
         let oferta_id = gestorBD.mongo.ObjectID(req.params.id);
         let usuario = res.usuario;
@@ -144,7 +183,7 @@ module.exports = function (app, gestorBD) {
         let errors = new Array();
         esVendedor(usuario, oferta_id, function (isAutor) {
             if (isAutor) {
-                gestorBD.eliminarOferta(criterio, function (ofertas) {
+                gestorBD.eliminar('ofertas', criterio, function (ofertas) {
                     if (ofertas == null) {
                         res.status(500);
                         errors.push('Se ha producido un error al eliminar la oferta');
@@ -163,34 +202,32 @@ module.exports = function (app, gestorBD) {
     });
 
 
-    function validar(mensaje, ofertaID, usuario, funcionCallback) {
-        let errors = [];
-
-        // longitud máxima, no vacío
-        if (mensaje.texto === null || typeof mensaje.texto === 'undefined'
-            || mensaje.texto.trim() === '') {
-            errors.push('El mensaje no puede  estar vacio');
-        } else if (mensaje.texto.length > 50) {
-            errors.push('El mensaje no puede tener más de 50 caracteres');
-        } else {
-            let criterio = {'_id': ofertaID};
-            gestorBD.obtenerOfertas(criterio, function (ofertas) {
-                if (ofertas == null) {
-                    errors.push('La oferta a la que quiere enviar un mensaje no existe');
-                } else {
-                    if (ofertas[0].vendida) {
-                        errors.push('La oferta ya está vendia');
+    /**
+     * Función auxiliar que inserta el mensaje
+     */
+    function insertarMensaje(req, res, ofertaId, mensaje) {
+        utils.validarMensaje(mensaje, function (errors) {
+            if (errors !== null && errors.length > 0) {
+                logger.error('Errores de vaidación del comentario' + errors);
+                res.status(403);
+                res.json({errores: errors});
+            } else {
+                gestorBD.insertar('mensajes', mensaje, function (id) {
+                    if (id == null) {
+                        logger.error('Error al insertar el mensaje');
+                        errors.push('Se ha producido un error');
+                        res.status(500);
+                        res.json({errores: errors})
+                    } else {
+                        logger.info('Mensaje insertado: ' + id);
+                        res.status(201);
+                        res.json({
+                            mensaje: 'Mensaje insertado',
+                            _id: id
+                        })
                     }
-                    if (ofertas[0].autor === usuario) {
-                        errors.push('No se puede mensajear a uno mismo');
-                    }
-                }
-            });
-        }
-        if (errors.length > 0) {
-            funcionCallback(errors);
-        } else {
-            funcionCallback(null);
-        }
+                });
+            }
+        });
     }
-}
+};

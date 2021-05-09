@@ -7,9 +7,9 @@
         <form method="get" action="/ofertas">
             <div class="input-group col-xs-8 col-sm-6 col-md-4 col-lg-5 pull-right">
                 <input type="text" class="search-query form-control" placeholder="Palabra a buscar"
-                       name="busqueda"/>
+                       name="busqueda" id="busqueda"/>
                 <span class="input-group-btn">
-                    <button class="btn" type="submit">
+                    <button class="btn" type="submit" id="btn-buscar">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </span>
@@ -37,10 +37,10 @@
                     <td style="text-align:center">{{ oferta.descripcion }}</td>
                     <td style="text-align:center">{{ oferta.precio }}</td>
                     <td>
-                        {% if oferta.vendida %}
-                        <button type="button" class="btn btn-secondary" disabled>Vendida</button>
+                        {% if oferta.comprador !== null %}
+                        <button type="button" class="btn btn-secondary" disabled>Vendido</button>
                         {% endif %}
-                        {% if !oferta.vendida %}
+                        {% if oferta.comprador === null %}
                         <a class="btn btn-secondary" role="button"
                            href="/ofertas/comprar/{{ oferta._id.toString() }}">
                             <span class="glyphicon glyphicon-shopping-cart"></span>Comprar</a>

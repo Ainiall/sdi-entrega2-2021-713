@@ -7,7 +7,7 @@ const { configure, getLogger } = require('log4js');
  */
 configure({
     appenders: {
-        console: { type: 'console' ,"layout": { "type": "pattern", "pattern": "%d - %c:[%p]: %m" }},
+        console: { type: 'console' },
         fileAppender: {type: 'file', filename: './logs/sdi2021-713.log'}
     },
     categories: {

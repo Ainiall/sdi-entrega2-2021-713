@@ -14,7 +14,7 @@ app.use(function (req, res, next) {
 });
 
 let jwt = require('jsonwebtoken');
-app.set('jwt', jwt);
+
 
 let fs = require('fs');
 let https = require('https');
@@ -63,8 +63,7 @@ routerUsuarioToken.use(function (req, res, next) {
 });
 // Aplicar router Usuario Token
 app.use('/api/ofertas', routerUsuarioToken);
-app.use('/api/chat/*', routerUsuarioToken);
-app.use('/api/mensaje/*', routerUsuarioToken);
+app.use('/api/mensajes/*', routerUsuarioToken);
 
 /**
  * Router que se encarga de manejar las vistas privadas del usuario
@@ -122,6 +121,7 @@ app.set('db', 'mongodb://admin:sdi@sdi-entrega2-shard-00-00.dmatw.mongodb.net:27
     '=atlas-103fus-shard-0&authSource=admin&retryWrites=true&w=majority');
 app.set('clave', 'abcdefg');
 app.set('crypto', crypto);
+app.set('jwt', jwt);
 
 //Rutas/controladores por lógica
 require('./routes/rusuarios.js')(app, swig, gestorBD);
@@ -129,6 +129,8 @@ require('./routes/rofertas.js')(app, swig, gestorBD);
 require('./routes/radmin.js')(app,swig, gestorBD);
 
 require('./routes/rapiofertas.js')(app, gestorBD);
+
+require('./routes/rtest.js')(app,swig, gestorBD);
 
 /**
  * Redirección de la vista principal
@@ -143,7 +145,7 @@ app.get('/', function (req, res) {
  */
  app.get('/home', function (req, res) {
     logger.info('Acceso a la vista principal de la aplicación');
-    let respuesta = swig.renderFile('views/home.html', {
+    let respuesta = swig.renderFile('views/bhome.html', {
         usuario: req.session.usuario,
         dinero: req.session.dinero,
         rol: req.session.rol
@@ -156,7 +158,7 @@ app.get('/', function (req, res) {
  * Manero error páginas inexistentes
  */
 app.get('*', (req, res, next) => {
-    next(new Error('Página no encontrada'))
+    next(new Error('Página no encontrada:'+req.originalUrl))
 });
 
 /**
@@ -166,7 +168,7 @@ app.use(function (err, req, res,next) {
     logger.error('APP ERROR: '+err);
     if (!res.headersSent) {
         res.status(400);
-        let respuesta = swig.renderFile('views/error.html', {
+        let respuesta = swig.renderFile('views/berror.html', {
             mensaje:  err.message,
             tipoMensaje: 'alert-danger',
             usuario: req.session.usuario,

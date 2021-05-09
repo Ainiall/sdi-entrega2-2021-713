@@ -21,12 +21,12 @@
             <td style="text-align:center">{{ oferta.precio }}</td>
 
             <td>
-                {% if oferta.vendida %}
+                {% if oferta.comprador !== null %}
                 <button type="button" class="btn btn-secondary" disabled>
-                    <span class="glyphicon glyphicon-trash"></span> Eliminar
+                    <span class="glyphicon glyphicon-trash"></span> Vendido
                 </button>
                 {% endif %}
-                {% if !oferta.vendida %}
+                {% if oferta.comprador === null %}
                 <a href="/ofertas/eliminar/{{ oferta._id.toString() }}">
                     <span class="glyphicon glyphicon-trash"></span> Eliminar
                 </a> <br>

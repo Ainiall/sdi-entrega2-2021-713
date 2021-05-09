@@ -491,7 +491,7 @@ module.exports = function (app, swig, gestorBD) {
                             },
                             //oferta 22: test7 y test1
                             {
-                                'interesado': 'test1@email.com',
+                                'interesado': 'test6@email.com',
                                 'ofertaId': ofertaId[21],
                                 'vendedor': 'test7@email.com'
                             },
@@ -1239,7 +1239,7 @@ module.exports = function (app, swig, gestorBD) {
 
                                     //oferta 22: test7 y test1
                                     {
-                                        'interesado': 'test1@email.com',
+                                        'interesado': 'test6@email.com',
                                         'vendedor': 'test7@email.com',
                                         'texto': 'Creo que no voy a contratar tu seguro',
                                         'chatId': chatId[21],
@@ -1247,7 +1247,7 @@ module.exports = function (app, swig, gestorBD) {
                                         'leido': true
                                     },
                                     {
-                                        'interesado': 'test1@email.com',
+                                        'interesado': 'test6@email.com',
                                         'vendedor': 'test7@email.com',
                                         'texto': '¿Por qué?',
                                         'chatId': chatId[21],
@@ -1255,7 +1255,7 @@ module.exports = function (app, swig, gestorBD) {
                                         'leido': true
                                     },
                                     {
-                                        'interesado': 'test1@email.com',
+                                        'interesado': 'test6@email.com',
                                         'vendedor': 'test7@email.com',
                                         'texto': 'No creo que me vaya a pasar nada nunca',
                                         'chatId': chatId[21],
@@ -1263,7 +1263,7 @@ module.exports = function (app, swig, gestorBD) {
                                         'leido': true
                                     },
                                     {
-                                        'interesado': 'test1@email.com',
+                                        'interesado': 'test6@email.com',
                                         'vendedor': 'test7@email.com',
                                         'texto': 'Esperemos que así sea',
                                         'chatId': chatId[21],

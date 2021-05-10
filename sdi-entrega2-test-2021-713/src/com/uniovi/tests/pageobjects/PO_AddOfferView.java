@@ -15,7 +15,7 @@ public class PO_AddOfferView extends PO_NavView {
      * @param preciop precio a escribir
      */
     static public void fillForm(WebDriver driver, String titulop,
-            String descripcionp, String preciop) {
+            String descripcionp, String preciop, boolean destacadap) {
 
         WebElement titulo = driver.findElement(By.name("titulo"));
         titulo.click();
@@ -31,7 +31,12 @@ public class PO_AddOfferView extends PO_NavView {
         precio.click();
         precio.clear();
         precio.sendKeys(preciop);
-
+        
+        WebElement destacada = driver.findElement(By.name("destacada"));
+        if(destacadap==true) {
+            destacada.click();
+        }
+        
         By boton = By.className("btn");
         driver.findElement(boton).click();
     }

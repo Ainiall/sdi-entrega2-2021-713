@@ -81,4 +81,30 @@ public class PO_PrivateView extends PO_NavView {
         elementos.get(0).click();
     }
 
+    public static void comprobarDestacados(WebDriver driver, String mensaje) {
+     // desconexión para ver la lista de destacados desde otro usuario
+        PO_NavView.clickOption(driver, "desconectarse", "id",
+                "identificacion-titulo");
+        PO_LoginView.fillForm(driver, "test5@email.com", "12345678");
+        // vamos a la ventana de destacados
+        PO_View.checkElement(driver, "id", "mDestacadas");
+        driver.findElement(By.id("mDestacadas")).click();
+        // comprobamos que sale la oferta destacada
+        PO_View.checkElement(driver, "text", mensaje);
+        
+    }
+
+    public static void ofertaDestacada(WebDriver driver, String mensaje, int n,
+            double saldo) {
+        // comprobamos que aparece en la lista de ofertas
+        PO_View.alerta(driver, mensaje);
+        // comprobamos que aparece el saldo actualizado
+        PO_View.checkElement(driver, "id", "dinero");
+        // debería ser ->130.5 -> 110.5
+        Double nuevoPrecio = Double.parseDouble(
+                driver.findElement(By.id("dinero")).getText().substring(0, n));
+        assertTrue(nuevoPrecio == saldo);
+        
+    }
+
 }

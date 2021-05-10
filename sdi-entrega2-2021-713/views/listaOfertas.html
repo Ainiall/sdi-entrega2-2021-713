@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block contenido_principal %}
+
+{% block h2 %}
+<!--Posible titulo por defecto-->
+{% endblock %}
+
+<div class="row">
+    {% block busqueda %}
+    <!--Posible busqueda por defecto-->
+    {% endblock %}
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="text-center">Título</th>
+                <th class="text-center">Descripción</th>
+                <th class="text-center">Precio</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for oferta in ofertas %}
+            <tr>
+                <td style="text-align:center">{{ oferta.titulo }}</td>
+                <td style="text-align:center">{{ oferta.descripcion }}</td>
+                <td style="text-align:center">{{ oferta.precio }}</td>
+                <td>
+                    {% if oferta.comprador !== null %}
+                    <button type="button" class="btn btn-secondary" disabled>Vendido</button>
+                    {% endif %}
+                    {% if oferta.comprador === null %}
+                    <a class="btn btn-secondary" role="button"
+                       href="/ofertas/comprar/{{ oferta._id.toString() }}">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>Comprar</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor%}
+            </tbody>
+        </table>
+    </div>
+    {% block paginacion %}
+    <!--Posible paginacion por defecto-->
+    {% endblock %}
+</div>
+
+{% endblock %}

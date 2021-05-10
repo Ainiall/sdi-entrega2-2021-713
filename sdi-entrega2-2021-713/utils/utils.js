@@ -45,13 +45,7 @@ module.exports = {
     filtrarOfertas: function filtrarOfertas(ofertas) {
         let filtrados = [];
         for (let i = 0; i < ofertas.length; i++) {
-            const filtado = (({
-                                  _id,
-                                  titulo,
-                                  descripcion,
-                                  precio,
-                                  comprador
-                              }) => ({
+            const filtado = (({_id,titulo,descripcion,precio,comprador}) => ({
                 _id,
                 titulo,
                 descripcion,
@@ -65,18 +59,13 @@ module.exports = {
     filtrarOfertasPropias: function filtrarOfertasPropias(ofertas) {
         let filtrados = [];
         for (let i = 0; i < ofertas.length; i++) {
-            const filtado = (({
-                                  _id,
-                                  titulo,
-                                  descripcion,
-                                  precio,
-                                  comprador
-                              }) => ({
+            const filtado = (({_id,titulo,descripcion,precio, comprador, destacada}) => ({
                 _id,
                 titulo,
                 descripcion,
                 precio,
-                comprador
+                comprador,
+                destacada
             }))(ofertas[i]);
             filtrados.push(filtado);
         }
@@ -176,25 +165,42 @@ module.exports = {
         return true;
     },
 
-    validarAgregarOferta: function validarAgregarOferta(res, titulo, descripcion, precio) {
+    validarAgregarOferta: function validarAgregarOferta(res, oferta, usuario) {
+        // por defecto checkbox solo envía info si está pulsado
+        // por lo que se debe asignar el valor correcto
+        if(oferta.destacada ==='on'){
+            oferta.destacada = true;
+        }else{
+            oferta.destacada = false;
+        }
         // no puede tener campos vacíos
-        if (this.validarCampoVacio(titulo) || this.validarCampoVacio(descripcion)
-            || this.validarCampoVacio(precio)) {
-            this.manejoAvisos(res, 'Intento de creación de oferta con campos vacíos o demasiado grandes',
+        if (this.validarCampoVacio(oferta.titulo) || this.validarCampoVacio(oferta.descripcion)) {
+            this.manejoAvisos(res, 'Intento de creación de oferta con campos vacíos',
                 'ofertas/agregar', 'Los campos no pueden estar vacíos');
             return false;
         }
-        if (!this.validarCampoDentroLimites(titulo, 1, 50) ||
-            !this.validarCampoDentroLimites(descripcion, 1, 50)) {
+        if (!this.validarCampoDentroLimites(oferta.titulo, 1, 50) ||
+            !this.validarCampoDentroLimites(oferta.descripcion, 1, 50)) {
             this.manejoAvisos(res, 'Intento de creación de oferta con campos vacíos o demasiado grandes',
                 'ofertas/agregar', 'Los campos no pueden tener más de 50 caracteres');
             return false;
         }
         // no puede tener precio negativo
-        if (precio < 0) {
-            this.manejoAvisos(res, 'Intento de creación de oferta con precio negativo:' + precio,
+        if (oferta.precio < 0) {
+            this.manejoAvisos(res, 'Intento de creación de oferta con precio negativo:' + oferta.precio,
                 'ofertas/agregar', 'El precio no puede ser negativo');
-            return false
+            return false;
+        }
+        // no se puede destacar si no se ha seleccionado y se tiene saldo suficiente
+        if (usuario.dinero < 20 && oferta.destacada !== true) {
+            oferta.destacada = false;
+            this.manejoAvisos(res, 'Intento de creación de oferta destacada con dinero insuficiente:'
+                + usuario.dinero, 'ofertas/agregar', 'No tienes dinero para crear una oferta destacada');
+            return false;
+            //si se ha seleccionado y el saldo es suficiente
+        } else if(oferta.destacada === true && usuario.dinero >=20){
+            let saldo = Math.round((usuario.dinero - 20 + Number.EPSILON) * 100) / 100;
+            usuario.dinero = saldo;
         }
         return true;
     },
@@ -204,13 +210,12 @@ module.exports = {
         if (vendedor === usuario) {
             if (comprador !== null) {
                 this.manejoErrores('Intento de eliminar una oferta ya vendida',
-                    'ofertas/mis-ofertas', 'No se puede eliminar una oferta ya vendida.', next);
+                    'No se puede eliminar una oferta ya vendida.', next);
                 return false;
             }
         } else {
             this.manejoErrores('Intento de eliminar una oferta que no le pertenece:'
-                + oferta, 'ofertas/mis-ofertas',
-                'No se puede eliminar una oferta de otra persona', next);
+                + oferta, 'No se puede eliminar una oferta de otra persona', next);
             return false;
         }
         return true;
@@ -226,23 +231,54 @@ module.exports = {
         //no se puede comprar una oferta ya vendida
         if (comprador !== null) {
             this.manejoErrores('Intento de compra de una oferta vendida: ' + oferta,
-                'No se puede comprar una oferta ya vendida', next)
+                'No se puede comprar una oferta ya vendida', next);
+            return false;
         }
         return true;
     },
     validarMensaje: function validarMensaje(mensaje, funcionCallback) {
-    let errors = [];
-    // longitud máxima, no vacío
-    if (this.validarCampoVacio(mensaje.texto)) {
-        errors.push('El mensaje no puede  estar vacio');
-    } else if (!this.validarCampoDentroLimites(mensaje.texto, 1, 200)) {
-        errors.push('El mensaje no puede tener más de 200 caracteres ni menos de 1');
-    }
+        let errors = [];
+        // longitud máxima, no vacío
+        if (this.validarCampoVacio(mensaje.texto)) {
+            errors.push('El mensaje no puede  estar vacio');
+        } else if (!this.validarCampoDentroLimites(mensaje.texto, 1, 200)) {
+            errors.push('El mensaje no puede tener más de 200 caracteres ni menos de 1');
+        }
 
-    if (errors.length > 0) {
-        funcionCallback(errors);
-    } else {
-        funcionCallback(null);
-    }
-}
+        if (errors.length > 0) {
+            funcionCallback(errors);
+        } else {
+            funcionCallback(null);
+        }
+    },
+    validarDestacarOferta: function validarDestacarOferta(res, oferta, usuario, next) {
+        // no puede comprarse una oferta de otro usuario
+        if (oferta.vendedor !== usuario.email) {
+            this.manejoErrores('Intento de destacar una oferta de otro usuario:' + oferta,
+                'No se puede destacar una oferta de otro usuario', next);
+            return false;
+        }
+        //no se puede destacar una oferta ya vendida
+        if (oferta.comprador !== null) {
+            this.manejoErrores('Intento de destacar una oferta vendida: ' + oferta,
+                'No se puede destacar una oferta ya vendida', next);
+            return false;
+        }
+        // no se puede destacar si ya esta destacada
+        if(oferta.destacada === true){
+            this.manejoErrores('Intento de destacar una oferta ya destacada: ' + oferta,
+                'No se puede destacar una oferta ya destacada', next);
+            return false;
+        }
+        if(usuario.dinero <20){
+            this.manejoAvisos(res, 'Intento de destacar oferta con dinero insuficiente:' + usuario.dinero,
+                'ofertas/mis-ofertas', 'No tienes dinero suficiente para destacar una oferta (20€)');
+            return false;
+        } else {
+            let saldo = Math.round((usuario.dinero - 20 + Number.EPSILON) * 100) / 100;
+            usuario.dinero = saldo;
+            oferta.destacada = true;
+        }
+        return true;
+    },
 }

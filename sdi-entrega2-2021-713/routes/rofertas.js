@@ -86,19 +86,37 @@ module.exports = function (app, swig, gestorBD) {
             precio: parseFloat(req.body.precio),
             vendedor: req.session.usuario,
             comprador: null,
-            destacada: false
+            destacada: req.body.destacada
         }
-        if (utils.validarAgregarOferta(res, req.body.titulo, req.body.descripcion, req.body.precio)) {
-            gestorBD.insertar('ofertas', oferta, function (id) {
-                if (id == null) {
-                    utils.manejoErrores('Error al crear una nueva oferta por usuario:' + req.session.usuario,
-                        'Error al insertar la oferta', next);
-                } else {
-                    logger.info('Nueva oferta creada por usuario:' + req.session.usuario);
-                    res.redirect('/ofertas/mis-ofertas?mensaje=Oferta agregada');
+        let criterio = {'email': req.session.usuario}
+        gestorBD.obtener('usuarios', criterio, function (usuarios) {
+            if (usuarios === null) {
+                utils.manejoErrores('Error al obtener usuario actual de la BBDD:' + req.session.usuario,
+                    'Error al obtener datos del usuario actual de la BBDD', next);
+            } else {
+                if (utils.validarAgregarOferta(res, oferta, usuarios[0])) {
+                    gestorBD.insertar('ofertas', oferta, function (id) {
+                        if (id == null) {
+                            utils.manejoErrores('Error al crear una nueva oferta por usuario:' + req.session.usuario,
+                                'Error al insertar la oferta', next);
+                        } else {
+                            gestorBD.modificar('usuarios', criterio, usuarios[0], function (result) {
+                                if (result === null) {
+                                    utils.manejoErrores('Error al actualizar el dinero del usuario:' + req.session.usuario,
+                                        'Error al actualizar el dinero del usuario', next);
+                                } else {
+                                    req.session.dinero = usuarios[0].dinero;
+                                    logger.info('Nueva oferta creada por usuario:' + req.session.usuario);
+                                    res.redirect('/ofertas/mis-ofertas?mensaje=Oferta agregada');
+                                }
+                            })
+
+                        }
+                    });
                 }
-            });
-        }
+            }
+        })
+
     });
 
     /**
@@ -257,10 +275,78 @@ module.exports = function (app, swig, gestorBD) {
         );
     });
 
+    /**
+     * Listado de ofertas destacadas
+     */
+    app.get('/ofertas/destacadas', function (req, res, next) {
+        logger.info('Acceso a la página de ofertas destacadas');
+
+        let criterio = {
+            $and: [{'vendedor': {$not: {$regex: req.session.usuario}}},
+                {'destacada': true}]
+        };
+
+        gestorBD.obtener('ofertas', criterio, function (ofertas) {
+            if (ofertas == null) {
+                utils.manejoErrores('Error al listar ofertas destacadas',
+                    'Error al listar ofertas destacadas', next);
+            } else {
+                let respuesta = swig.renderFile('views/bdestacadas.html',
+                    {
+                        ofertas: utils.filtrarOfertas(ofertas),
+                        usuario: req.session.usuario,
+                        dinero: req.session.dinero,
+                        rol: req.session.rol
+                    });
+                res.send(respuesta);
+            }
+        });
+    });
+
+    /**
+     * Destacar ofertas propias
+     */
+    app.get('/ofertas/destacar/:id', function (req, res, next) {
+        let criterio = {'email': req.session.usuario}
+        gestorBD.obtener('usuarios', criterio, function (usuarios) {
+            if (usuarios === null) {
+                utils.manejoErrores('Error al obtener usuario actual de la BBDD:' + req.session.usuario,
+                    'Error al obtener datos del usuario actual de la BBDD', next);
+            } else {
+                let criterio2 = {'_id': gestorBD.mongo.ObjectID(req.params.id)};
+                gestorBD.obtener('ofertas', criterio2, function (ofertas) {
+                    if (ofertas === null) {
+                        utils.manejoErrores('Error al obtener oferta' + req.params.id,
+                            'Error al obtener oferta', next);
+                    } else {
+                        if (utils.validarDestacarOferta(res, ofertas[0], usuarios[0], next)) {
+                            gestorBD.modificar('usuarios', criterio, usuarios[0], function (result) {
+                                if (result === null) {
+                                    utils.manejoErrores('Error al actualizar el dinero del usuario:' + req.session.usuario,
+                                        'Error al actualizar el dinero del usuario', next);
+                                } else {
+                                    gestorBD.modificar('ofertas', criterio2, ofertas[0], function (result) {
+                                        if (result === null) {
+                                            utils.manejoErrores('Error al actualizar la oferta destacada:' + ofertas[0]._id,
+                                                'Error al actualizar la oferta destacada', next);
+                                        } else {
+                                            logger.info('Nueva oferta ' + ofertas[0] +
+                                                'destacada por usuario:' + req.session.usuario);
+                                            req.session.dinero = usuarios[0].dinero;
+                                            res.redirect('/ofertas/mis-ofertas?mensaje=Oferta destacada');
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    });
 
     app.get('/ofertas*', function (req, res) {
         res.redirect('/ofertas')
     });
 
-}
-;
+};

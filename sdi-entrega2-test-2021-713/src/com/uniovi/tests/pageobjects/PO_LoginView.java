@@ -62,9 +62,10 @@ public class PO_LoginView extends PO_NavView {
      * @param driver apuntando al navegador abierto actualmente
      * @param menu   opción del menu desplegable
      */
-    public static void loginUser5Menu(WebDriver driver, String menu) {
+    public static void loginUserMenu(WebDriver driver, String usuario,
+            String menu) {
         // inicio correcto
-        PO_LoginView.login(driver, "test5@email.com", "12345678");
+        PO_LoginView.login(driver, usuario, "12345678");
         // pulsamos el botón que nos lleva al formulario
         PO_NavView.clickMenuOption(driver, menu);
     }
@@ -123,7 +124,7 @@ public class PO_LoginView extends PO_NavView {
     public static void loginAPIincorrecto(WebDriver driver, String URL,
             String usuario, String pass) {
         driver.navigate().to(URL + "/cliente.html");
-        //carga la pagina de login
+        // carga la pagina de login
         PO_LoginView.checkElement(driver, "id", "widget-login");
         // inicio incorrecto
         PO_LoginView.fillForm(driver, usuario, pass);

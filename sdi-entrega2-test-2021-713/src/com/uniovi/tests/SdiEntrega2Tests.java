@@ -277,10 +277,10 @@ public class SdiEntrega2Tests {
     @Test
     public void PR15() {
         // inicio correcto y acceso al menu de agregar oferta
-        PO_LoginView.loginUser5Menu(driver, "add");
+        PO_LoginView.loginUserMenu(driver, "test5@email.com", "add");
         // lo rellenamos con datos válidos
         PO_AddOfferView.fillForm(driver, "Mi producto de prueba #1",
-                "Esta es una decripción de prueba", "15.43");
+                "Esta es una decripción de prueba", "15.43", false);
         // comprobamos que aparecen en la lista
         PO_View.checkElement(driver, "text", "Mi producto de prueba #1");
         // pagina mis ofertas
@@ -293,10 +293,10 @@ public class SdiEntrega2Tests {
     @Test
     public void PR16() {
         // inicio correcto y acceso al menu de agregar oferta
-        PO_LoginView.loginUser5Menu(driver, "add");
+        PO_LoginView.loginUserMenu(driver, "test5@email.com", "add");
         // lo rellenamos con datos inválidos
         PO_AddOfferView.fillForm(driver, "", "Esta es una decripción de prueba",
-                "-87");
+                "-87", false);
         // se muestra el error
         PO_View.alerta(driver, "Los campos no pueden estar vacíos");
     }
@@ -306,7 +306,7 @@ public class SdiEntrega2Tests {
     @Test
     public void PR17() {
         // inicio correcto y acceso al menu de ofertas propias
-        PO_LoginView.loginUser5Menu(driver, "my-product");
+        PO_LoginView.loginUserMenu(driver, "test5@email.com", "my-product");
         // comprobamos que aparecen en la lista los de la BBDD
         PO_View.checkElement(driver, "text", "Iphone 8 64");
         PO_View.checkElement(driver, "text", "Google Home");
@@ -323,7 +323,7 @@ public class SdiEntrega2Tests {
     @Test
     public void PR18() {
         // inicio correcto y acceso al menu de ofertas propias
-        PO_LoginView.loginUser5Menu(driver, "my-product");
+        PO_LoginView.loginUserMenu(driver, "test5@email.com", "my-product");
         // borrar oferta
         PO_PrivateView.borrarOferta(driver, 1, "Iphone 8 64");
         // comprobamos que la primera fila ya no tiene ese producto
@@ -340,7 +340,7 @@ public class SdiEntrega2Tests {
     @Test(expected = NoSuchElementException.class)
     public void PR19() {
         // inicio correcto y acceso al menu de ofertas propias
-        PO_LoginView.loginUser5Menu(driver, "my-product");
+        PO_LoginView.loginUserMenu(driver, "test5@email.com", "my-product");
         // borrar oferta
         PO_PrivateView.borrarOferta(driver, 4, "Mi producto de prueba #1");
         // como ya no existe la cuarta fila debe lanzar una excepión
@@ -435,7 +435,7 @@ public class SdiEntrega2Tests {
         // precio anterior 150.5 -> 150.5
         PO_PrivateView.compra(driver, 5, 5, "Saldo insuficiente."
                 + " No se puede comprar la oferta seleccionada", 150.5);
-        
+
     }
 
     // PR26. Ir a la opción de ofertas compradas del usuario y mostrar la lista.
@@ -460,12 +460,21 @@ public class SdiEntrega2Tests {
 
     // PR27. Al crear una oferta marcar dicha oferta como destacada y a
     // continuación comprobar: i) que aparece en el listado de ofertas
-    // destacadas para los
-    // usuarios y que el saldo del usuario se actualiza adecuadamente en la
-    // vista del ofertante (-20).
+    // destacadas para los usuarios y que el saldo del usuario se actualiza
+    // adecuadamente en la vista del ofertante (-20).
     @Test
     public void PR27() {
-        // assertTrue("PR27 sin hacer", false);
+        // inicio correcto y ventana agregar oferta
+        PO_LoginView.loginUserMenu(driver, "test6@email.com", "add");
+        // lo rellenamos con datos válidos
+        PO_AddOfferView.fillForm(driver, "Mi producto destacado",
+                "descripción destacada", "5", true);
+        PO_View.checkElement(driver, "text", "Mi producto destacado");
+        // mensaje y saldo esperado, substring 5
+        PO_PrivateView.ofertaDestacada(driver, "Oferta agregada", 5, 130.5);
+        // comprobamos que se muestra como destacada para el resto de usuarios
+        PO_PrivateView.comprobarDestacados(driver, "Mi producto destacado");
+
     }
 
     // PR28. Sobre el listado de ofertas de un usuario con másde 20 euros de
@@ -475,7 +484,17 @@ public class SdiEntrega2Tests {
     // (-20)
     @Test
     public void PR28() {
-        // assertTrue("PR28 sin hacer", false);
+        // inicio correcto y ventana agregar oferta
+        PO_LoginView.loginUserMenu(driver, "test6@email.com", "my-product");
+        PO_View.checkElement(driver, "id", "mis-ofertas");
+        // destacamos una oferta
+        driver.findElement(
+                By.xpath("/html/body/div/div/table/tbody/tr[2]/td[5]/a"))
+                .click();
+        // mensaje y saldo esperado, substring 5
+        PO_PrivateView.ofertaDestacada(driver, "Oferta destacada", 5, 110.5);
+        // comprobamos que se muestra como destacada para el resto de usuarios
+        PO_PrivateView.comprobarDestacados(driver, "Mi producto destacado");
     }
 
     // PR029. Sobre el listado de ofertas de un usuario con menos de 20 euros de
@@ -483,7 +502,17 @@ public class SdiEntrega2Tests {
     // muestra el mensaje de saldo no suficiente.
     @Test
     public void PR29() {
-        // assertTrue("PR29 sin hacer", false);
+        // inicio correcto y ventana agregar oferta
+        PO_LoginView.loginUserMenu(driver, "test5@email.com", "my-product");
+        PO_View.checkElement(driver, "id", "mis-ofertas");
+        // destacamos una oferta
+        driver.findElement(
+                By.xpath("/html/body/div/div/table/tbody/tr[1]/td[5]/a"))
+                .click();
+        // mensaje y saldo esperado
+        PO_PrivateView.ofertaDestacada(driver,
+                "No tienes dinero suficiente para destacar una oferta (20€) ",
+                1, 0);
     }
 
     // PR030. Inicio de sesión con datos válidos.
@@ -627,5 +656,5 @@ public class SdiEntrega2Tests {
         PO_LoginView.login(driver, "test1@email.com", "");
         PO_View.alerta(driver, "Los campos no pueden estar vacíos");
     }
-    
+
 }

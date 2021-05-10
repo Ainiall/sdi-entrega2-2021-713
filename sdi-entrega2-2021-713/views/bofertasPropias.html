@@ -10,7 +10,8 @@
             <th class="text-center">Título</th>
             <th class="text-center">Descripción</th>
             <th class="text-center">Precio</th>
-            <th class="col-md-1"></th>
+            <th class="text-center"></th>
+            <th class="text-center"></th>
         </tr>
         </thead>
         <tbody>
@@ -19,19 +20,28 @@
             <td style="text-align:center">{{ oferta.titulo }}</td>
             <td style="text-align:center">{{ oferta.descripcion }}</td>
             <td style="text-align:center">{{ oferta.precio }}</td>
-
             <td>
                 {% if oferta.comprador !== null %}
                 <button type="button" class="btn btn-secondary" disabled>
                     <span class="glyphicon glyphicon-trash"></span> Vendido
                 </button>
-                {% endif %}
-                {% if oferta.comprador === null %}
+                {% else %}
                 <a href="/ofertas/eliminar/{{ oferta._id.toString() }}">
                     <span class="glyphicon glyphicon-trash"></span> Eliminar
                 </a> <br>
                 {% endif %}
-
+            </td>
+            <td>
+                {% if oferta.destacada %}
+                <button type="button" class="btn btn-secondary" disabled>
+                    Destacada
+                </button>
+                {% endif %}
+                {% if !oferta.destacada && oferta.comprador === null %}
+                <a href="/ofertas/destacar/{{ oferta._id.toString() }}">
+                    ⭐Destacar
+                </a> <br>
+                {% endif %}
             </td>
         </tr>
         {% endfor %}

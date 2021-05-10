@@ -70,7 +70,7 @@ module.exports = function (app, swig, gestorBD) {
                         'nombre': 'Phyllis',
                         'apellidos': 'Lapin-Vance',
                         'password': 'a0fcffb4e8ff04f20c7ac02e890d365d8daf0439098b48d61fb0287fb83856ce',
-                        'dinero': 49.5,
+                        'dinero': 29.5,
                         'rol': 'USUARIO'
                     }
                 ];
@@ -328,7 +328,7 @@ module.exports = function (app, swig, gestorBD) {
                         'precio': 28.7,
                         'vendedor': 'test7@email.com',
                         'comprador': null,
-                        'destacada': false
+                        'destacada': true
                     }
                 ];
                 // Se insertan las ofertas y compras de prueba en la base de datos

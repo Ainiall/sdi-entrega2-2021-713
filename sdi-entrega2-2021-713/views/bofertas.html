@@ -1,6 +1,12 @@
-{% extends "base.html" %}
+{% extends "listaOfertas.html" %}
 {% block titulo %} Wallapop {% endblock %}
-{% block contenido_principal %}
+
+
+{% block h2 %}
+<h2 id="destacadas">Ofertas</h2>
+{% endblock %}
+
+{% block busqueda %}
 <!--Búsqueda-->
 <div class="row">
     <div id="custom-search-input ">
@@ -18,43 +24,9 @@
     </div>
 </div>
 
-<h2>Ofertas</h2>
-<div class="row">
-    <!--Inicio del Bloque oferta-->
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th class="text-center">Título</th>
-                <th class="text-center">Descripción</th>
-                <th class="text-center">Precio</th>
-            </tr>
-            </thead>
-            <tbody>
-                {% for oferta in ofertas %}
-                <tr>
-                    <td style="text-align:center">{{ oferta.titulo }}</td>
-                    <td style="text-align:center">{{ oferta.descripcion }}</td>
-                    <td style="text-align:center">{{ oferta.precio }}</td>
-                    <td>
-                        {% if oferta.comprador !== null %}
-                        <button type="button" class="btn btn-secondary" disabled>Vendido</button>
-                        {% endif %}
-                        {% if oferta.comprador === null %}
-                        <a class="btn btn-secondary" role="button"
-                           href="/ofertas/comprar/{{ oferta._id.toString() }}">
-                            <span class="glyphicon glyphicon-shopping-cart"></span>Comprar</a>
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor%}
-            </tbody>
-        </table>
-    </div>
+{% endblock %}
 
-    <!--Fin del Bloque ofertas-->
-</div>
-
+{% block paginacion %}
 <!--Paginación mostrar la actual y 2 anteriores y 2 siguientes-->
 <div class="row text-center">
     <ul class="pagination">

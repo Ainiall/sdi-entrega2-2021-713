@@ -1,0 +1,169 @@
+<div id="widget-chats">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Oferta</th>
+            <th>Vendedor</th>
+            <th class="col-md-1"></th>
+            <th class="col-md-1"></th>
+        </tr>
+        </thead>
+        <tbody id="tablaChats">
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    window.history.pushState("", "", "/cliente.html?w=chats");
+    var chats;
+    var actualizarChats;
+
+    cargarChats();
+
+    // intervalo de actualización periódico
+    setInterval(function () {
+        if(actualizarChats){
+            // solo recarga si se esta en la vista
+            let url = new URL(window.location.href).searchParams.get("w");
+            if (url === "chats"){
+                cargarChats();
+            }
+        }
+    }, 2000);
+
+    //carga los chats
+    function cargarChats() {
+        $.ajax({
+            url: URLbase + "/chats",
+            type: "GET",
+            data: {},
+            dataType: 'json',
+            headers: {"token": token},
+            success: function (respuesta) {
+                if(chats === undefined){
+                   obtenerDatosChats(respuesta);
+                }else{
+                    //las notificaciones se actualizan siempre
+                    comprobarNotificacion(chats);
+                    // si realmente hay actualizaciones se carga de nuevo la tabla
+                    if(chats.length !== respuesta.length){
+                        obtenerDatosChats(respuesta);
+                    }if(menuChats){
+                        obtenerDatosChats(respuesta);
+                        menuChats=false;
+                    }
+                }
+            },
+            error: function (err) {
+                error(err);
+            }
+        });
+    }
+
+    //actualiza la tabla de chats
+    function actualizarTabla(chatsMostrar) {
+        $("#tablaChats").empty(); // Vaciar la tabla
+        for (let i = 0; i < chatsMostrar.length; i++) {
+            $("#tablaChats").append(
+                "<tr id=" + chatsMostrar[i]._id + ">" +
+                "<td>" + chatsMostrar[i].titulo + "</td>" +
+                "<td>" + chatsMostrar[i].vendedor + "</td>" +
+                "<td id='chat'>" +
+                    "<a onclick=chat('" + chatsMostrar[i].ofertaId+"','"+chatsMostrar[i].interesado +"')>" +
+                    "<span class=\"glyphicon glyphicon-envelope\"></span> Chat " +
+                "</td>" +
+                "<td><span class=\"badge\" id=\"notificacion" + chatsMostrar[i]._id + "\"></span></td>"+
+                "<td>" +
+                "<a onclick=eliminar('" + chatsMostrar[i]._id + "')>" +
+                "<span class=\"glyphicon glyphicon-trash\"></span> Eliminar</a><br>" +
+                "</td>" +
+                "</tr>");
+        }
+    }
+
+    // elimina el chat indicado
+    function eliminar(_id) {
+        $.ajax({
+            url: URLbase + "/chats/" + _id,
+            type: "DELETE",
+            data: {},
+            dataType: 'json',
+            headers: {"token": token},
+            success: function () {
+                actualizarChats=true;
+                $("#" + _id).remove(); // eliminar el <tr> del chat
+            },
+            error: function (error) {
+                actualizarChats=true;
+                $("#tablaChats").empty();
+                $("#alertas").remove();
+                let errores = error.responseJSON.errores;
+                if (errores != null && errores.length > 0) {
+                    $("#widget-chats").prepend(
+                        "<div id = 'alertas' class='alert alert-danger'>" +
+                            "<ul id = 'ul-errores'></ul></div>");
+                    for (let i = 0; i < errores.length; i++) {
+                        $("#alertas").append("<li >" + errores[i] + "</li>");
+                    }
+                } else {
+                    $("#widget-chats").prepend(
+                        "<div id = 'alertas' class='alert alert-danger'>" +
+                        "Se ha producido un error no controlado</div>");
+                }
+                cargarChats();
+            }
+        });
+    }
+
+    // abre el chat indicado
+    function chat(_id, interesado) {
+        idOfertaSeleccionada = _id;
+        emailInteresado = interesado;
+        clickChat=true;
+
+        $("#contenedor-principal").load("widget-chat.html");
+    }
+
+    function comprobarNotificacion(chats){
+        for (let i = 0; i < chats.length; i++) {
+            notificaciones(chats[i]._id);
+        }
+    }
+    // manejo notificaciones
+    function notificaciones(_id) {
+        $.ajax({
+            url: URLbase + "/chats/notificacion/"+ _id,
+            type: "GET",
+            data: {},
+            dataType: 'json',
+            headers: {"token": token},
+            success: function (respuesta) {
+                actualizarChats=true;
+                if(respuesta >0){
+                    $("#notificacion"+_id).text(respuesta);
+                }else{
+                    $("#notificacion"+_id).empty();
+                }
+            },
+            error: function (err) {
+                error(err);
+            }
+        });
+    }
+    // manejo errores
+    function error(err){
+        console.log(err);
+        actualizarChats=false;
+        $('#barra-menu-derecha').empty();
+        $("#contenedor-principal").load("widget-login.html");
+    }
+    //obtener datos chats
+    function obtenerDatosChats(respuesta){
+        chats = respuesta;
+        comprobarNotificacion(chats);
+        actualizarTabla(chats);
+        actualizarChats=false;
+    }
+</script>
+

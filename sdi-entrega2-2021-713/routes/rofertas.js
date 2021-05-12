@@ -53,7 +53,8 @@ module.exports = function (app, swig, gestorBD) {
                         rol: req.session.rol,
                         ofertas: utils.filtrarOfertas(ofertas),
                         paginas: paginas,
-                        actual: pg
+                        actual: pg,
+                        busqueda: req.query.busqueda
                     });
                 logger.info('Listado de ofertas mostrado')
                 res.send(respuesta);
@@ -159,8 +160,16 @@ module.exports = function (app, swig, gestorBD) {
                             utils.manejoErrores('Error al eliminar una oferta',
                                 'Error al eliminar la oferta.', next);
                         } else {
-                            logger.info('Oferta eliminada: ' + req.params.id)
-                            res.redirect('/ofertas/mis-ofertas?mensaje=Oferta eliminada');
+                            let criterio = {'ofertaId': req.params.id}
+                            gestorBD.eliminarChats(criterio, function (chats){
+                                if(chats === null){
+                                    utils.manejoErrores('Error al eliminar chats de la oferta'
+                                        + req.params.id, 'Error al eliminar la oferta.', next);
+                                }else{
+                                    logger.info('Oferta eliminada: ' + req.params.id)
+                                    res.redirect('/ofertas/mis-ofertas?mensaje=Oferta eliminada');
+                                }
+                            } );
                         }
                     });
                 }
@@ -174,15 +183,15 @@ module.exports = function (app, swig, gestorBD) {
      */
     app.get('/ofertas/comprar/:id', function (req, res, next) {
         let criterio = {'_id': gestorBD.mongo.ObjectID(req.params.id)}
-
+        let origen =  req.get('Referrer').replace('https://localhost:8081/','');
         // la oferta debe existir
         gestorBD.obtener('ofertas', criterio, function (ofertas) {
             if (ofertas === null) {
                 utils.manejoErrores('Intento de compra de oferta inexistente:' + req.params.id,
                     'No se puede comprar una oferta inexistente', next);
             } else {
-                if (utils.validarCompra(ofertas[0].vendedor, req.session.usuario, ofertas[0].comprador),
-                    req.params.id, next) {
+                if (utils.validarCompra(ofertas[0].vendedor, req.session.usuario, ofertas[0].comprador,
+                    req.params.id, next)) {
 
                     // el comprador debe existir
                     let criterio2 = {'email': req.session.usuario}
@@ -194,7 +203,7 @@ module.exports = function (app, swig, gestorBD) {
                             // no se puede comprar si el saldo es menor -> informar al usuario
                             if (usuarios[0].dinero < ofertas[0].precio) {
                                 utils.manejoAvisos(res, 'Intento de compra de una oferta con salgo ' +
-                                    'insuficiente por:' + req.session.usuario, 'ofertas', 'Saldo ' +
+                                    'insuficiente por:' + req.session.usuario, origen, 'Saldo ' +
                                     'insuficiente. No se puede comprar la oferta seleccionada');
                             } else {
                                 // modificar el estado como vendido

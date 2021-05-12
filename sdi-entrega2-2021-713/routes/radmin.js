@@ -65,13 +65,22 @@ module.exports = function (app, swig, gestorBD) {
                                             utils.manejoErrores('Error al modificar las compras de los usuarios eliminados',
                                                 'Error al modificar las compras', next);
                                         } else {
-                                            logger.info('Usuario(s) eliminado(s)');
-                                            res.redirect('/admin?mensaje=Usuario(s) eliminado(s)');
+                                            // se eliminan sus chats y mensajes
+                                            let criterio4 = utils.criterioInterlocutorSeleccionado(array, req.body.userEmail);
+                                            gestorBD.eliminarChats(criterio4, function(chats){
+                                                if(chats===null){
+                                                    utils.manejoErrores('Error al eliminar los chats y mensajes de los usuarios' +
+                                                        ' eliminados', 'Error al eliminar los chats y mensajes', next);
+                                                }else{
+                                                    logger.info('Usuario(s) eliminado(s)');
+                                                    res.redirect('/admin?mensaje=Usuario(s) eliminado(s)');
+                                                }
+                                            });
+
                                         }
                                     });
                                 }
                             });
-
                         }
                     });
                 }

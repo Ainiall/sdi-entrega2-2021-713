@@ -1,5 +1,6 @@
 <div id="widget-canciones">
-    <input type="text" class="form-control" placeholder="Filtrar por nombre" id="filtro-nombre"/>
+    <input type="text" class="form-control" placeholder="Filtrar por nombre"
+           id="busqueda"/>
     <button class="btn" onclick="cargarOfertas()">Actualizar</button>
     <table class="table table-hover">
         <thead>
@@ -19,8 +20,27 @@
 
 <script>
     window.history.pushState("", "", "/cliente.html?w=ofertas");
-    var ofertas;
 
+    $('#barra-menu-derecha').empty();
+    $('#barra-menu-derecha').append("<li><a>" + usuario + "</a></li>");
+
+    var ofertas;
+    var actualizarOfertas = true;
+
+    cargarOfertas();
+
+    // intervalo de actualización periódico
+    setInterval(function () {
+        if (actualizarOfertas) {
+            // solo recarga si se esta en la vista
+            let url = new URL(window.location.href).searchParams.get("w");
+            if (url === "ofertas"){
+                cargarOfertas();
+            }
+        }
+    }, 2000);
+
+    //carga las ofertas si hay datos nuevos
     function cargarOfertas() {
         $.ajax({
             url: URLbase + "/ofertas",
@@ -29,27 +49,41 @@
             dataType: 'json',
             headers: {"token": token},
             success: function (respuesta) {
-                ofertas = respuesta;
-                actualizarTabla(ofertas);
+                if(ofertas === undefined){
+                    obtenerDatos(respuesta)
+                }else{
+                    // si realmente hay actualizaciones se carga de nuevo la tabla
+                    if(ofertas.length !== respuesta.length){
+                        obtenerDatos(respuesta);
+                        console.log('actualizado');
+                    }if(menuOfertas){
+                        obtenerDatos(respuesta);
+                        menuOfertas=false;
+                    }
+                }
             },
             error: function (error) {
+                console.log(error);
+                actualizarOfertas=false;
+                $('#barra-menu-derecha').empty();
                 $("#contenedor-principal").load("widget-login.html");
             }
         });
     }
 
+    //actualiza la tabla
     function actualizarTabla(ofertasMostrar) {
         $("#tablaCuerpo").empty(); // Vaciar la tabla
         for (let i = 0; i < ofertasMostrar.length; i++) {
-            let link="";
+            let link = "";
             if (ofertasMostrar[i].comprador === null) {
-                link= "<td>" +
+                link =
+                    "<td id='chat'>" +
                     "<a onclick=chat('" + ofertasMostrar[i]._id + "')>" +
-                    "<span class=\"glyphicon glyphicon-envelope\"></span> Chat</a><br>" +
-                    "</td>";
-            }else{
-                link= "<td><button type=\"button\" className=\"btn btn-secondary\" " +
-                    "disabled>Vendido</button></td>"
+                    "<span class=\"glyphicon glyphicon-envelope\"></span> Chat " +
+                    "</td>"
+            } else {
+                link = "<td><button type=\"button\" disabled>Vendido</button></td>"
             }
             $("#tablaCuerpo").append(
                 "<tr id=" + ofertasMostrar[i]._id + ">" +
@@ -61,23 +95,35 @@
         }
     }
 
-    cargarOfertas();
-
+    // carga el chat seleccionado
     function chat(_id) {
         idOfertaSeleccionada = _id;
+        emailInteresado = null;
+        clickChat=true;
+
         $("#contenedor-principal").load("widget-chat.html");
     }
 
-
-    $('#filtro-nombre').on('input', function (e) {
-        var ofertasFiltradas = [];
-        var nombreFiltro = $("#filtro-nombre").val();
+    // busqueda parcial por nombre. se pausa la actualizacion mientras tanto
+    $('#busqueda').on('input', function (e) {
+        let ofertasFiltradas = [];
+        let nombreFiltro = $("#busqueda").val();
         for (let i = 0; i < ofertas.length; i++) {
-            if (ofertas[i].titulo.indexOf(nombreFiltro) !== -1) {
+            if (ofertas[i].titulo.toUpperCase().indexOf(nombreFiltro.toUpperCase()) !== -1) {
                 ofertasFiltradas.push(ofertas[i]);
             }
         }
+        actualizarOfertas = false;
         actualizarTabla(ofertasFiltradas);
+        //se reanuda la actualizacion si se queda vacío
+        actualizarOfertas = nombreFiltro.length === 0;
     });
+
+
+    function obtenerDatos(respuesta){
+        ofertas = respuesta;
+        actualizarTabla(ofertas);
+        actualizarOfertas=true;
+    }
 </script>
 

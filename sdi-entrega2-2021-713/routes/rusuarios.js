@@ -78,7 +78,7 @@ module.exports = function (app, swig, gestorBD) {
         }
     );
 
-    app.post('/identificarse', function (req, res, next) {
+    app.post('/identificarse', function (req, res) {
         let seguro = app.get('crypto').createHmac('sha256', app.get('clave'))
             .update(req.body.password).digest('hex');
         let criterio = {email: req.body.email, password: seguro}

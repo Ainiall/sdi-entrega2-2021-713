@@ -1,8 +1,7 @@
 <div id="widget-mensajes">
 
     <!-- Comentarios -->
-    <h2>Mensajes:</h2>
-
+    <h2 id="titulo-chat">Chat</h2>
     <div class="form-group">
         <label class="control-label col-sm-2" for="agregar-mensaje">Mensaje:</label>
         <div class="col-sm-8">
@@ -20,38 +19,75 @@
     <br>
     <div class="container-fluid" id="chat"></div>
     <br>
-    <button onclick="widgetOfertas()" class="btn">Volver</button>
+
 </div>
 
 <script>
-   $.ajax({
-       url: URLbase + "/mensajes/" + idOfertaSeleccionada,
-       type: "GET",
-       data: {},
-       dataType: 'json',
-       headers: {"token": token},
-       success: function (mensajes) {
-           actualizarChat(mensajes);
-       },
-       error: function (error) {
-           $("#widget-mensajes").prepend("<div id = 'alertas' class='alert alert-info'>" +
-               "<span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>" +
-               "El chat está vacío.Envía un mensaje para comenzar la conversación</div>");
-       }
-   });
+    window.history.pushState("", "", "/cliente.html?w=chat");
 
+    var mensajes;
+    var actualizarMensajes = true
+
+    cargarChat();
+
+    // intervalo de actualización periódico
+    setInterval(function () {
+        if(actualizarMensajes){
+            // solo recarga si se esta en la vista
+            let url = new URL(window.location.href).searchParams.get("w");
+            if (url === "chat"){
+                cargarChat();
+            }
+        }
+    }, 1000);
+
+    //obtiene los mensajes del chat de una oferta concreta con el usuario actual
+    function cargarChat(){
+        $.ajax({
+            url: URLbase + "/mensajes/" + idOfertaSeleccionada,
+            type: "GET",
+            data: {},
+            dataType: 'json',
+            headers: {"token": token},
+            success: function (respuesta) {
+                if(mensajes === undefined){
+                    obtenerDatosChat(respuesta);
+                }else{
+                    // si realmente hay actualizaciones se carga de nuevo la tabla
+                    if(mensajes.length !== respuesta.length){
+                        obtenerDatosChat(respuesta);
+                    }if(clickChat){
+                        obtenerDatosChat(respuesta);
+                        clickChat=false;
+                    }
+                }
+            },
+            error: function (error) {
+                actualizarMensajes = mensajes !== undefined;
+                $('#alertas').remove();
+                let er = error.responseJSON.error;
+                if (er != null && er.length > 0) {
+                    $("#widget-mensajes").prepend(
+                        "<div id = 'alertas' class='alert alert-danger'>" +
+                        "<span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>"+
+                        er+"</div>");
+                }
+            }
+        });
+    }
+
+   // actualiza el chat
     function actualizarChat(mensajes){
         $("#chat").empty(); // Vaciar la tabla
         for (let i = 0; i < mensajes.length; i++) {
-            let entregado = "   🗸Entregado";
-            let estilo = "text-secondary"
-            if(mensajes[0].leido){
-                entregado= "    🗸🗸Leído";
+            let entregado = "   🗸Entregado"
+            if(mensajes[i].leido){
+                entregado = "    🗸🗸Leído";
             }
             $("#chat").append(
                 "<div class=\"panel panel-default\" id=" + mensajes[i]._id + ">" +
                     "<div class=\"panel-heading\">" +
-                        "<div class=\"col-sm-10\"><b>" + mensajes[i].interesado + "</b></div>"+
+                        "<div class=\"col-sm-10\"><b>" + mensajes[i].autor + "</b></div>"+
                         "<small>" + mensajes[i].fecha + "</small>"+ entregado +
                     "</div>"+
                     "<div class=\"panel-body\">" + mensajes[i].texto + "</div>" +
@@ -59,23 +95,25 @@
         }
     }
 
+    // agrega un nuevo mensaje al chat
     function agregarMensaje(){
         $.ajax({
-            url: URLbase + "/mensajes/"+idOfertaSeleccionada,
+            url: URLbase + "/mensajes/"+ idOfertaSeleccionada,
             type: "POST",
             data: {
-                texto: $("#agregar-mensaje").val()
+                texto: $("#agregar-mensaje").val(),
+                interesado: emailInteresado
             },
             dataType: 'json',
             headers: {"token": token},
-            success: function (respuesta) {
-                console.log(respuesta); // <-- Prueba
-                $("#contenedor-principal").load("widget-chat.html");
+            success: function () {
+                $("#alertas").remove();
+                document.getElementById("agregar-mensaje").value="";
             },
             error: function (error) {
-                console.log(error); // <--Prueba
+                actualizarMensajes = mensajes !== undefined;
                 $("#alertas").remove();
-                let errores = error.responseJSON.errores;
+                let errores = error.responseJSON.error;
                 if (errores != null && errores.length > 0) {
                     $("#widget-mensajes").prepend("<div id = 'alertas' class='alert alert-danger'>" +
                         "<span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>" +
@@ -91,4 +129,45 @@
             }
         });
     }
+
+    // marca como leidos los mensajes del chat
+   function  marcarComoLeido(mensajes){
+       //mensajes leídos al entrar al chat
+       for (let i = 0; i < mensajes.length; i++) {
+           if (mensajes[i].leido ===false && mensajes[i].autor !== usuario) {
+               modificar(mensajes[i]._id);
+               mensajes[i].leido = true;
+           }
+       }
+   }
+
+   // modifica el mensaje seleccionado
+   function modificar(_id){
+       $.ajax({
+           url: URLbase + "/mensajes/leido/" + _id,
+           type: "put",
+           data: {},
+           dataType: 'json',
+           headers: { "token": token },
+           success: function() {
+           },
+           error : function (error){
+               actualizarMensajes = mensajes !== undefined;
+               let er = error.responseJSON.error;
+               if (er != null && er.length > 0) {
+                   $("#widget-mensajes").prepend(
+                       "<div id = 'alertas' class='alert alert-danger'>" +
+                       "<span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>"+
+                       er+"</div>");
+               }
+           }
+       });
+   }
+   // obtiene los datos de un chat
+   function obtenerDatosChat(respuesta){
+       mensajes = respuesta;
+       actualizarMensajes=true;
+       marcarComoLeido(mensajes);
+       actualizarChat(mensajes);
+   }
 </script>

@@ -1,5 +1,6 @@
 package com.uniovi.tests.pageobjects;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -87,10 +88,10 @@ public class PO_PrivateView extends PO_NavView {
                 "identificacion-titulo");
         PO_LoginView.fillForm(driver, "test5@email.com", "12345678");
         // vamos a la ventana de destacados
-        PO_View.checkElement(driver, "id", "mDestacadas");
+        assertNotNull(PO_View.checkElement(driver, "id", "mDestacadas"));
         driver.findElement(By.id("mDestacadas")).click();
         // comprobamos que sale la oferta destacada
-        PO_View.checkElement(driver, "text", mensaje);
+        assertNotNull(PO_View.checkElement(driver, "text", mensaje));
         
     }
 
@@ -99,12 +100,31 @@ public class PO_PrivateView extends PO_NavView {
         // comprobamos que aparece en la lista de ofertas
         PO_View.alerta(driver, mensaje);
         // comprobamos que aparece el saldo actualizado
-        PO_View.checkElement(driver, "id", "dinero");
+        assertNotNull(PO_View.checkElement(driver, "id", "dinero"));
         // debería ser ->130.5 -> 110.5
         Double nuevoPrecio = Double.parseDouble(
                 driver.findElement(By.id("dinero")).getText().substring(0, n));
         assertTrue(nuevoPrecio == saldo);
         
     }
+    
+    /**
+     * Rellena el formulario de búsqueda API
+     * 
+     * @param driver apuntando al navegador abierto actualmente
+     * @param textp  texto a buscar
+     */
+    static public void fillFormSearchAPI(WebDriver driver, String textp) {
+        //esperamos a que cargue la tabla principal
+        List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver,
+                "id", "tablaCuerpo", PO_View.getTimeout());
+        assertTrue(elementos.size()==1);
+        // Rellenemos el campo dedescripción
+        WebElement text = driver.findElement(By.id("busqueda"));
+        text.click();
+        text.clear();
+        text.sendKeys(textp);
+    }
+
 
 }

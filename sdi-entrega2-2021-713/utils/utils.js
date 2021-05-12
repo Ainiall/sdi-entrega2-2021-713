@@ -45,7 +45,7 @@ module.exports = {
     filtrarOfertas: function filtrarOfertas(ofertas) {
         let filtrados = [];
         for (let i = 0; i < ofertas.length; i++) {
-            const filtado = (({_id,titulo,descripcion,precio,comprador}) => ({
+            const filtado = (({ _id, titulo, descripcion, precio, comprador }) => ({
                 _id,
                 titulo,
                 descripcion,
@@ -56,10 +56,25 @@ module.exports = {
         }
         return filtrados;
     },
+    filtrarOfertasAPI: function filtrarOfertasAPI(ofertas) {
+        let filtrados = [];
+        for (let i = 0; i < ofertas.length; i++) {
+            const filtado = (({ _id, titulo, descripcion, precio, comprador, vendedor }) => ({
+                _id,
+                titulo,
+                descripcion,
+                precio,
+                comprador,
+                vendedor
+            }))(ofertas[i]);
+            filtrados.push(filtado);
+        }
+        return filtrados;
+    },
     filtrarOfertasPropias: function filtrarOfertasPropias(ofertas) {
         let filtrados = [];
         for (let i = 0; i < ofertas.length; i++) {
-            const filtado = (({_id,titulo,descripcion,precio, comprador, destacada}) => ({
+            const filtado = (({ _id, titulo, descripcion, precio, comprador, destacada }) => ({
                 _id,
                 titulo,
                 descripcion,
@@ -99,6 +114,16 @@ module.exports = {
             return {'comprador': {$in: array}};
         } else {
             return {'comprador': chechbox};
+        }
+    },
+    criterioInterlocutorSeleccionado: function criterioInterlocutorSeleccionado(array, chechbox) {
+        if (Array.isArray(chechbox)) {
+            for (let i = 0; i < chechbox.length; i++) {
+                array.push(chechbox[i]);
+            }
+            return  {$or: [{'vendedor': {$in: array}}, {'interesado': {$in: array}}]};
+        } else {
+            return  {$or: [{'vendedor': chechbox}, {'interesado': chechbox}]};
         }
     },
     manejoErrores: function manejoErrores(log, error, next) {
@@ -168,11 +193,7 @@ module.exports = {
     validarAgregarOferta: function validarAgregarOferta(res, oferta, usuario) {
         // por defecto checkbox solo envía info si está pulsado
         // por lo que se debe asignar el valor correcto
-        if(oferta.destacada ==='on'){
-            oferta.destacada = true;
-        }else{
-            oferta.destacada = false;
-        }
+        oferta.destacada = oferta.destacada === 'on';
         // no puede tener campos vacíos
         if (this.validarCampoVacio(oferta.titulo) || this.validarCampoVacio(oferta.descripcion)) {
             this.manejoAvisos(res, 'Intento de creación de oferta con campos vacíos',
@@ -192,15 +213,14 @@ module.exports = {
             return false;
         }
         // no se puede destacar si no se ha seleccionado y se tiene saldo suficiente
-        if (usuario.dinero < 20 && oferta.destacada !== true) {
+        if (usuario.dinero < 20 && oferta.destacada === true) {
             oferta.destacada = false;
             this.manejoAvisos(res, 'Intento de creación de oferta destacada con dinero insuficiente:'
                 + usuario.dinero, 'ofertas/agregar', 'No tienes dinero para crear una oferta destacada');
             return false;
             //si se ha seleccionado y el saldo es suficiente
-        } else if(oferta.destacada === true && usuario.dinero >=20){
-            let saldo = Math.round((usuario.dinero - 20 + Number.EPSILON) * 100) / 100;
-            usuario.dinero = saldo;
+        } else if (oferta.destacada === true && usuario.dinero >= 20) {
+            usuario.dinero = Math.round((usuario.dinero - 20 + Number.EPSILON) * 100) / 100;
         }
         return true;
     },
@@ -265,20 +285,29 @@ module.exports = {
             return false;
         }
         // no se puede destacar si ya esta destacada
-        if(oferta.destacada === true){
+        if (oferta.destacada === true) {
             this.manejoErrores('Intento de destacar una oferta ya destacada: ' + oferta,
                 'No se puede destacar una oferta ya destacada', next);
             return false;
         }
-        if(usuario.dinero <20){
+        if (usuario.dinero < 20) {
             this.manejoAvisos(res, 'Intento de destacar oferta con dinero insuficiente:' + usuario.dinero,
                 'ofertas/mis-ofertas', 'No tienes dinero suficiente para destacar una oferta (20€)');
             return false;
         } else {
-            let saldo = Math.round((usuario.dinero - 20 + Number.EPSILON) * 100) / 100;
-            usuario.dinero = saldo;
+            usuario.dinero = Math.round((usuario.dinero - 20 + Number.EPSILON) * 100) / 100;
             oferta.destacada = true;
         }
         return true;
     },
+    esInterlocutor: function esInterlocutor(res, usuario, vendedor, interesado) {
+        if(usuario === vendedor || usuario === interesado){
+            return true;
+        }else{
+            logger.error('El usuario no es un interlocutor del chat que intenta eliminar');
+            res.status(403); //no tiene permisos
+            res.json({error: 'No se pueden eliminar chats donde no se participa'});
+            return false;
+        }
+    }
 }

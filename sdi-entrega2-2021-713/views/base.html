@@ -3,6 +3,7 @@
 <head>
     <title>{% block titulo %} Wallapop {% endblock %}</title>
     <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="/img/favicon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -27,7 +28,7 @@
             {% if rol == 'USUARIO' %}
             <ul class="nav navbar-nav">
                 <!-- USUARIO ESTANDAR -->
-                <li id="mOfertas" class="active"><a href="/ofertas">Ofertas</a>
+                <li id="mOfertas"><a href="/ofertas">Ofertas</a>
                 </li>
                 <li id="mDestacadas"><a href="/ofertas/destacadas">⭐Destacadas</a>
                 </li>
@@ -95,6 +96,7 @@
             return results === null ? '' :
                 decodeURIComponent(results[1].replace(/\+/g, ' '));
         };
+
     </script>
 
     <!-- Contenido -->

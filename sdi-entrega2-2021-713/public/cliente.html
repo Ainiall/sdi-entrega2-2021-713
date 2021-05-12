@@ -2,6 +2,7 @@
 <head>
     <title>AJAX Wallapop </title>
     <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="/img/favicon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -45,12 +46,15 @@
 </div>
 
 <script>
+    var usuario;
+
     let token;
     let URLbase = "https://localhost:8081/api";
     $("#contenedor-principal").load("widget-login.html");
 
     if (Cookies.get('token') != null) {
         token = Cookies.get('token');
+        usuario = Cookies.get('usuario');
         let url = new URL(window.location.href);
         let w = url.searchParams.get("w");
         if (w === "login") {
@@ -65,10 +69,12 @@
     }
 
     function widgetOfertas() {
+        menuOfertas=true;
         $("#contenedor-principal").load("widget-ofertas.html");
     }
 
     function widgetChats() {
+        menuChats=true;
         $("#contenedor-principal").load("widget-chats.html");
     }
 

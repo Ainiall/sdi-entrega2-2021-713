@@ -64,6 +64,7 @@ routerUsuarioToken.use(function (req, res, next) {
 // Aplicar router Usuario Token
 app.use('/api/ofertas', routerUsuarioToken);
 app.use('/api/mensajes/*', routerUsuarioToken);
+app.use('/api/chats*', routerUsuarioToken);
 
 /**
  * Router que se encarga de manejar las vistas privadas del usuario
@@ -129,7 +130,8 @@ require('./routes/rofertas.js')(app, swig, gestorBD);
 require('./routes/radmin.js')(app,swig, gestorBD);
 
 require('./routes/rapiofertas.js')(app, gestorBD);
-
+require('./routes/rapiusuarios.js')(app, gestorBD);
+require('./routes/rapichats.js')(app, gestorBD);
 require('./routes/rtest.js')(app,swig, gestorBD);
 
 /**

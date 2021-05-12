@@ -3,7 +3,7 @@
 
 
 {% block h2 %}
-<h2 id="destacadas">Ofertas</h2>
+<h2 id="ofertas">Ofertas</h2>
 {% endblock %}
 
 {% block busqueda %}
@@ -13,7 +13,7 @@
         <form method="get" action="/ofertas">
             <div class="input-group col-xs-8 col-sm-6 col-md-4 col-lg-5 pull-right">
                 <input type="text" class="search-query form-control" placeholder="Palabra a buscar"
-                       name="busqueda" id="busqueda"/>
+                       name="busqueda" id="busqueda" value="{{busqueda}}"/>
                 <span class="input-group-btn">
                     <button class="btn" type="submit" id="btn-buscar">
                         <span class="glyphicon glyphicon-search"></span>
@@ -32,7 +32,11 @@
     <ul class="pagination">
         {% for pagina in paginas %}
         <li class="page-item" id="pi-{{pagina}}">
+        {% if busqueda !== undefined %}
+            <a class="page-link" href="/ofertas?pg={{pagina}}&busqueda={{busqueda}}">{{pagina}}</a>
+            {% else %}
             <a class="page-link" href="/ofertas?pg={{pagina}}">{{pagina}}</a>
+        {% endif %}
         </li>
         {% endfor %}
         <script>

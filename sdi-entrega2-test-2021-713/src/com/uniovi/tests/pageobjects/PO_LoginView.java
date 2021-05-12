@@ -1,8 +1,15 @@
 package com.uniovi.tests.pageobjects;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.uniovi.tests.util.SeleniumUtils;
 
 public class PO_LoginView extends PO_NavView {
 
@@ -77,12 +84,13 @@ public class PO_LoginView extends PO_NavView {
      * @param user   usuario
      */
     public static void loginIncorrecto(WebDriver driver, String user) {
-        // inicio correcto
+        // inicio incorrecto
         PO_LoginView.login(driver, user, "12345678");
         // aparece la alerta de error
-        PO_View.checkElement(driver, "id", "alertas");
+        assertNotNull(PO_View.checkElement(driver, "id", "alertas"));
         // muestra el mensaje de error adecuado
-        PO_View.checkElement(driver, "text", "Email o password incorrecto");
+        assertNotNull(PO_View.checkElement(driver, "text",
+                "Email o password incorrecto"));
 
     }
 
@@ -105,12 +113,17 @@ public class PO_LoginView extends PO_NavView {
      * @param driver apuntando al navegador abierto actualmente
      * @param URL    URL base
      */
-    public static void loginAPI(WebDriver driver, String URL) {
+    public static void loginAPI(WebDriver driver, String URL, String user) {
+        // navegamos a la url de partida de la API
         driver.navigate().to(URL + "/cliente.html");
+        // comprobamos que cargan los elementos
+        assertNotNull(PO_View.checkElement(driver, "id", "email"));
         // inicio correcto
-        PO_LoginView.fillForm(driver, "test6@email.com", "12345678");
+        PO_LoginView.fillForm(driver, user, "12345678");
         // comprobamos que accedemos al listado
-        PO_View.checkElement(driver, "id", "tablaCuerpo");
+        List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver,
+                "id", "tablaCuerpo", PO_View.getTimeout());
+        assertTrue(elementos.size()==1);
     }
 
     /**
@@ -125,11 +138,12 @@ public class PO_LoginView extends PO_NavView {
             String usuario, String pass) {
         driver.navigate().to(URL + "/cliente.html");
         // carga la pagina de login
-        PO_LoginView.checkElement(driver, "id", "widget-login");
+        assertNotNull(PO_LoginView.checkElement(driver, "id", "widget-login"));
         // inicio incorrecto
         PO_LoginView.fillForm(driver, usuario, pass);
         // comprobamos que muestra el mensaje de error
-        PO_View.checkElement(driver, "text", "Usuario no encontrado");
+        assertNotNull(
+                PO_View.checkElement(driver, "text", "Usuario no encontrado"));
     }
 
 }
